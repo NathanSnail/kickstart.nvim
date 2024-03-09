@@ -69,6 +69,24 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- NOTE: Nathan - make rust use tabs instead of spaces
+vim.cmd("let g:rust_recommended_style=0")
+-- TODO: make this less hax
+local content = io.open("/home/nathan/.config/nvim/.rustfmt.toml","r"):read("*a")
+local line = ""
+local cmd = "let g:rustfmt_options='"
+for c = 1,#content do
+	local chr = content:sub(c,c)
+	if chr == "\n" then
+		cmd = cmd .. " ".. line
+		line = ""
+	else
+		line = line .. chr
+	end
+end
+cmd = cmd .. "'"
+-- vim.cmd(cmd)
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -713,7 +731,17 @@ require('lazy').setup {
       --	- Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
+{
+  "NeogitOrg/neogit",
+  dependencies = {
+    "nvim-lua/plenary.nvim",         -- required
+    "sindrets/diffview.nvim",        -- optional - Diff integration
 
+    "nvim-telescope/telescope.nvim", 
+  },
+  config = true
+},
+{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- put them in the right spots if you want.
@@ -733,6 +761,9 @@ require('lazy').setup {
   --	For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   -- { import = 'custom.plugins' },
 }
+
+-- NOTE: Nathan the colourscheme ought to be elsewhere
+vim.cmd("colorscheme nightfly")
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=4 sts=0 sw=0 noexpandtab
