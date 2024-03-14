@@ -69,7 +69,17 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
--- NOTE: Nathan - make rust use tabs instead of spaces
+--- NOTE: Nathan changes
+vim.opt.wrap = false
+---@param mode string
+---@param from string
+---@param to string
+local function nmap(mode, from, to) vim.keymap.set(mode, from, to) end
+nmap("n", "<C-u>", "<C-u>zz")
+nmap("n", "<C-d>", "<C-d>zz")
+nmap("n", "<C-f>", "<C-f>zz")
+nmap("n", "<C-b>", "<C-b>zz")
+-- NOTE: Make rust use tabs instead of spaces
 vim.cmd "let g:rust_recommended_style=0"
 -- TODO: make this less hax
 local content = io.open("/home/nathan/.config/nvim/.rustfmt.toml", "r"):read "*a"
@@ -109,10 +119,10 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set("n", "<left>", '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set("n", "<right>", '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set("n", "<up>", '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set("n", "<down>", '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set("n", "<left>", "")
+vim.keymap.set("n", "<right>", "")
+vim.keymap.set("n", "<up>", "")
+vim.keymap.set("n", "<down>", "")
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -727,6 +737,24 @@ require("lazy").setup {
 		config = true,
 	},
 	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = {
+
+			sort = {
+				sorter = "case_sensitive",
+			},
+			view = {
+				width = 30,
+			},
+			renderer = {
+				group_empty = true,
+			},
+			filters = {
+				dotfiles = true,
+			},
+		},
+	},
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- put them in the right spots if you want.
