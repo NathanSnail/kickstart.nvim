@@ -70,6 +70,10 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 
 --- NOTE: Nathan changes
+--- NOTE: Luarocks feature
+package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
+--- TODO: figure out wrapping in text docs then using gj gk
 vim.opt.wrap = false
 ---@param mode string
 ---@param from string
@@ -233,13 +237,13 @@ require("lazy").setup {
 	-- you do for a plugin at the top level, you can do for a dependency.
 	--
 	-- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 	{ -- Fuzzy Finder (files, lsp, etc)
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-lua/popup.nvim",
 			{ -- If encountering errors, see telescope-fzf-native README for install instructions
 				"nvim-telescope/telescope-fzf-native.nvim",
 
@@ -755,6 +759,7 @@ require("lazy").setup {
 			},
 		},
 	},
+	{ "3rd/image.nvim" },
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- put them in the right spots if you want.
