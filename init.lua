@@ -759,7 +759,46 @@ require("lazy").setup {
 			},
 		},
 	},
-	{ "3rd/image.nvim" },
+	{
+		"3rd/image.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"nvim-treesitter/nvim-treesitter",
+				build = ":TSUpdate",
+				config = function()
+					require("nvim-treesitter.configs").setup {
+						ensure_installed = { "markdown" },
+						highlight = { enable = true },
+					}
+				end,
+			},
+		},
+		opts = {
+			backend = "kitty",
+			integrations = {
+				markdown = {
+					enabled = true,
+					clear_in_insert_mode = false,
+					download_remote_images = true,
+					only_render_image_at_cursor = false,
+					filetypes = { "markdown", "vimwiki" }, -- markdown extensions (ie. quarto) can go here
+				},
+				neorg = {
+					enabled = true,
+					clear_in_insert_mode = false,
+					download_remote_images = true,
+					only_render_image_at_cursor = false,
+					filetypes = { "norg" },
+				},
+			},
+			max_width = nil,
+			max_height = nil,
+			max_width_window_percentage = nil,
+			max_height_window_percentage = 50,
+			kitty_method = "normal",
+		},
+	},
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- put them in the right spots if you want.
