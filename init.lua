@@ -28,11 +28,6 @@ vim.opt.mouse = "a"
 -- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
 
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.opt.clipboard = "unnamedplus"
-
 -- Enable break indent
 vim.opt.breakindent = true
 
@@ -67,44 +62,23 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 15
 
 --- NOTE: Nathan changes
+
+-- The silly tree
+vim.keymap.set("n", "<C-t>", ":NvimTreeOpen<CR>")
 --- NOTE: Luarocks feature
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
 --- TODO: figure out wrapping in text docs then using gj gk
 vim.opt.wrap = false
----@param mode string
----@param from string
----@param to string
-local function nmap(mode, from, to) vim.keymap.set(mode, from, to) end
+local nmap = vim.keymap.set
 nmap("n", "<C-u>", "<C-u>zz")
 nmap("n", "<C-d>", "<C-d>zz")
 nmap("n", "<C-f>", "<C-f>zz")
 nmap("n", "<C-b>", "<C-b>zz")
--- NOTE: Make rust use tabs instead of spaces
-vim.cmd "let g:rust_recommended_style=0"
--- TODO: make this less hax
-local content = io.open("/home/nathan/.config/nvim/.rustfmt.toml", "r"):read "*a"
-local line = ""
-local cmd = "let g:rustfmt_options='"
-for c = 1, #content do
-	local chr = content:sub(c, c)
-	if chr == "\n" then
-		cmd = cmd .. " " .. line
-		line = ""
-	else
-		line = line .. chr
-	end
-end
-cmd = cmd .. "'"
--- vim.cmd(cmd)
 
--- [[ Basic Keymaps ]]
---  See `:help vim.keymap.set()`
-
--- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
@@ -146,7 +120,9 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function() vim.highlight.on_yank() end,
+	callback = function()
+		vim.highlight.on_yank()
+	end,
 })
 
 -- [[ Install `lazy.nvim` plugin manager ]]
@@ -253,14 +229,16 @@ require("lazy").setup {
 
 				-- `cond` is a condition used to determine whether this plugin should be
 				-- installed and loaded.
-				cond = function() return vim.fn.executable "make" == 1 end,
+				cond = function()
+					return vim.fn.executable "make" == 1
+				end,
 			},
 			{ "nvim-telescope/telescope-ui-select.nvim" },
 
 			-- Useful for getting pretty icons, but requires special font.
 			--  If you already have a Nerd Font, or terminal set up with fallback fonts
 			--  you can enable this
-			-- { 'nvim-tree/nvim-web-devicons' }
+			{ "nvim-tree/nvim-web-devicons" },
 		},
 		config = function()
 			-- The easiest way to use telescope, is to start by doing something like:
@@ -317,20 +295,17 @@ require("lazy").setup {
 
 			-- Also possible to pass additional configuration options.
 			--  See `:help telescope.builtin.live_grep()` for information about particular keys
-			vim.keymap.set(
-				"n",
-				"<leader>s/",
-				function()
-					builtin.live_grep {
-						grep_open_files = true,
-						prompt_title = "Live Grep in Open Files",
-					}
-				end,
-				{ desc = "[S]earch [/] in Open Files" }
-			)
+			vim.keymap.set("n", "<leader>s/", function()
+				builtin.live_grep {
+					grep_open_files = true,
+					prompt_title = "Live Grep in Open Files",
+				}
+			end, { desc = "[S]earch [/] in Open Files" })
 
 			-- Shortcut for searching your neovim configuration files
-			vim.keymap.set("n", "<leader>sn", function() builtin.find_files { cwd = vim.fn.stdpath "config" } end, { desc = "[S]earch [N]eovim files" })
+			vim.keymap.set("n", "<leader>sn", function()
+				builtin.find_files { cwd = vim.fn.stdpath "config" }
+			end, { desc = "[S]earch [N]eovim files" })
 		end,
 	},
 
@@ -347,35 +322,6 @@ require("lazy").setup {
 			{ "j-hui/fidget.nvim", opts = {} },
 		},
 		config = function()
-			-- Brief Aside: **What is LSP?**
-			--
-			-- LSP is an acronym you've probably heard, but might not understand what it is.
-			--
-			-- LSP stands for Language Server Protocol. It's a protocol that helps editors
-			-- and language tooling communicate in a standardized fashion.
-			--
-			-- In general, you have a "server" which is some tool built to understand a particular
-			-- language (such as `gopls`, `lua_ls`, `rust_analyzer`, etc). These Language Servers
-			-- (sometimes called LSP servers, but that's kind of like ATM Machine) are standalone
-			-- processes that communicate with some "client" - in this case, Neovim!
-			--
-			-- LSP provides Neovim with features like:
-			--  - Go to definition
-			--  - Find references
-			--  - Autocompletion
-			--  - Symbol Search
-			--  - and more!
-			--
-			-- Thus, Language Servers are external tools that must be installed separately from
-			-- Neovim. This is where `mason` and related plugins come into play.
-			--
-			-- If you're wondering about lsp vs treesitter, you can check out the wonderfully
-			-- and elegantly composed help section, `:help lsp-vs-treesitter`
-
-			--  This function gets run when an LSP attaches to a particular buffer.
-			--	That is to say, every time a new file is opened that is associated with
-			--	an lsp (for example, opening `main.rs` is associated with `rust_analyzer`) this
-			--	function will be executed to configure the current buffer
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 				callback = function(event)
@@ -385,7 +331,9 @@ require("lazy").setup {
 					--
 					-- In this case, we create a function that lets us more easily define mappings specific
 					-- for LSP related items. It sets the mode, buffer and description for us each time.
-					local map = function(keys, func, desc) vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc }) end
+					local map = function(keys, func, desc)
+						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
+					end
 
 					-- Jump to the definition of the word under your cursor.
 					--  This is where a variable was first declared, or where a function is defined, etc.
@@ -422,7 +370,7 @@ require("lazy").setup {
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("F", vim.lsp.buf.hover, "Hover Documentation")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header
@@ -468,7 +416,7 @@ require("lazy").setup {
 				-- clangd = {},
 				-- gopls = {},
 				-- pyright = {},
-				-- rust_analyzer = {},
+				-- rust_analyzer ={} --- NOTE: idk i give up
 				-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
@@ -491,6 +439,7 @@ require("lazy").setup {
 								-- for your neovim configuration.
 								library = {
 									"${3rd}/luv/library",
+									"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
 									unpack(vim.api.nvim_get_runtime_file("", true)),
 								},
 								-- If lua_ls is really slow on your computer, you can try this instead:
@@ -519,6 +468,7 @@ require("lazy").setup {
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
 				"stylua", -- Used to format lua code
+				"rustfmt",
 			})
 			require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
@@ -543,7 +493,9 @@ require("lazy").setup {
 			{
 				-- Customize or remove this keymap to your liking
 				"<leader>f",
-				function() require("conform").format { async = true, lsp_fallback = true } end,
+				function()
+					require("conform").format { async = true, lsp_fallback = true }
+				end,
 				mode = "",
 				desc = "Format buffer",
 			},
@@ -563,6 +515,15 @@ require("lazy").setup {
 				-- You can use a sub-list to tell conform to run *until* a formatter
 				-- is found.
 				-- javascript = { { "prettierd", "prettier" } },
+			},
+		},
+	},
+	{
+		"Saecki/crates.nvim",
+		event = { "BufRead Cargo.toml" },
+		opts = {
+			src = {
+				cmp = { enabled = true },
 			},
 		},
 	},
@@ -589,7 +550,16 @@ require("lazy").setup {
 			--  into multiple repos for maintenance purposes.
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
 
+			"Saecki/crates.nvim",
+			event = { "BufRead Cargo.toml" },
+			opts = {
+				src = {
+					cmp = { enabled = true },
+				},
+			},
 			-- If you want to add a bunch of pre-configured snippets,
 			--	you can use this plugin to help you. It even has snippets
 			--	for various frameworks/libraries/etc. but you will have to
@@ -604,7 +574,9 @@ require("lazy").setup {
 
 			cmp.setup {
 				snippet = {
-					expand = function(args) luasnip.lsp_expand(args.body) end,
+					expand = function(args)
+						luasnip.lsp_expand(args.body)
+					end,
 				},
 				completion = { completeopt = "menu,menuone,noinsert" },
 
@@ -647,25 +619,9 @@ require("lazy").setup {
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
+					{ name = "crates" },
 				},
 			}
-		end,
-	},
-
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is
-		--
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-		"folke/tokyonight.nvim",
-		lazy = false, -- make sure we load this during startup if it is your main colorscheme
-		priority = 1000, -- make sure to load this before all the other start plugins
-		config = function()
-			-- Load the colorscheme here
-			vim.cmd.colorscheme "tokyonight-night"
-
-			-- You can configure highlights by doing something like
-			vim.cmd.hi "Comment gui=none"
 		end,
 	},
 
@@ -700,7 +656,9 @@ require("lazy").setup {
 			-- default behavior. For example, here we set the section for
 			-- cursor location to LINE:COLUMN
 			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function() return "%2l:%-2v" end
+			statusline.section_location = function()
+				return "%2l:%-2v"
+			end
 
 			-- ... and there is more!
 			--  Check out: https://github.com/echasnovski/mini.nvim
@@ -715,7 +673,7 @@ require("lazy").setup {
 
 			---@diagnostic disable-next-line: missing-fields
 			require("nvim-treesitter.configs").setup {
-				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc" },
+				ensure_installed = { "bash", "c", "html", "lua", "markdown", "vim", "vimdoc", "ron", "toml", "md" },
 				-- Autoinstall languages that are not installed
 				auto_install = true,
 				highlight = { enable = true },
@@ -740,7 +698,15 @@ require("lazy").setup {
 		},
 		config = true,
 	},
-	{ "bluz71/vim-nightfly-colors", name = "nightfly", lazy = false, priority = 1000 },
+	{
+		"bluz71/vim-nightfly-colors",
+		name = "nightfly",
+		lazy = false,
+		priority = 1000,
+		config = function(self, opts)
+			vim.cmd "colorscheme nightfly"
+		end,
+	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		opts = {
@@ -760,7 +726,76 @@ require("lazy").setup {
 		},
 	},
 	{
-		"3rd/image.nvim",
+		"mrcjkb/rustaceanvim",
+		version = "^4", -- Recommended
+		ft = { "rust" },
+		opts = {
+			server = {
+				on_attach = function(_, bufnr)
+					vim.keymap.set("n", "<leader>dr", function()
+						vim.cmd.RustLsp "debuggables"
+					end, { desc = "Rust debuggables", buffer = bufnr })
+				end,
+				default_settings = {
+					-- rust-analyzer language server configuration
+					["rust-analyzer"] = {
+						cargo = {
+							allFeatures = true,
+							loadOutDirsFromCheck = true,
+							runBuildScripts = true,
+						},
+						-- Add clippy lints for Rust.
+						checkOnSave = {
+							allFeatures = true,
+							command = "clippy",
+							extraArgs = { "--no-deps" },
+						},
+						procMacro = {
+							enable = true,
+							ignored = {
+								["async-trait"] = { "async_trait" },
+								["napi-derive"] = { "napi" },
+								["async-recursion"] = { "async_recursion" },
+							},
+						},
+					},
+				},
+			},
+		},
+		config = function(_, opts)
+			vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
+		end,
+	},
+	{
+		"neovim/nvim-lspconfig",
+		opts = {
+			servers = {
+				rust_analyzer = {},
+				taplo = {
+					keys = {
+						{
+							"K",
+							function()
+								if vim.fn.expand "%:t" == "Cargo.toml" and require("crates").popup_available() then
+									require("crates").show_popup()
+								else
+									vim.lsp.buf.hover()
+								end
+							end,
+							desc = "Show Crate Documentation",
+						},
+					},
+				},
+			},
+			setup = {
+				rust_analyzer = function()
+					return true
+				end,
+			},
+		},
+	},
+	{
+		"NathanSnail/image.nvim",
 		event = "VeryLazy",
 		dependencies = {
 			{
@@ -797,8 +832,19 @@ require("lazy").setup {
 			max_width_window_percentage = nil,
 			max_height_window_percentage = 50,
 			kitty_method = "normal",
+			hijack_hook = function(img, buf, defaults)
+				defaults()
+				vim.api.nvim_buf_set_keymap(buf, "n", "k", ":ImageUp<CR>", { silent = true })
+				vim.api.nvim_buf_set_keymap(buf, "n", "j", ":ImageDown<CR>", { silent = true })
+				vim.api.nvim_buf_set_keymap(buf, "n", "l", ":ImageLeft<CR>", { silent = true })
+				vim.api.nvim_buf_set_keymap(buf, "n", "h", ":ImageRight<CR>", { silent = true })
+				vim.api.nvim_buf_set_keymap(buf, "n", "o", ":ImageSmaller<CR>", { silent = true })
+				vim.api.nvim_buf_set_keymap(buf, "n", "i", ":ImageBigger<CR>", { silent = true })
+			end,
 		},
 	},
+	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
+	{ "HallerPatrick/py_lsp.nvim" },
 	-- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
 	-- init.lua. If you want these files, they are in the repository, so you can just download them and
 	-- put them in the right spots if you want.
@@ -818,9 +864,6 @@ require("lazy").setup {
 	--	For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
 }
-
--- NOTE: Nathan the colourscheme ought to be elsewhere
-vim.cmd "colorscheme nightfly"
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=4 sts=0 sw=0 noexpandtab

@@ -14,4 +14,11 @@ alias fv='fd && e'
 alias evim='e ~/.config/nvim/init.lua'
 alias ebash='e ~/.bash_aliases'
 alias conf='cd ~/.config/nvim/; e'
+alias cod='cd ~/Documents/code/'
+alias cat=bat
+alias ga='git add *'
+function camp() {
+	git commit -am "$1"
+	git push
+}
 
