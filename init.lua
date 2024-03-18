@@ -1,3 +1,5 @@
+package.path = package.path .. ";/home/nathan/.config/nvim/?.lua"
+
 --[[
 
  TODO: The very first thing you should do is to run the command `:Tutor` in Neovim.
