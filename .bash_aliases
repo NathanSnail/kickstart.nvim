@@ -21,4 +21,7 @@ function camp() {
 	git commit -am "$1"
 	git push
 }
+alias wina='lxc console windows --type=vga'
+alias wins='lxc start windows --console=vga'
+alias wink='lxc stop windows'
 
