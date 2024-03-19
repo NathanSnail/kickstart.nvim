@@ -1,10 +1,9 @@
 ---@param name string
 ---@return table
 local function file(name)
-	return {
-		name,
-		require "lua/custom/plugins/" .. name:gsub("/",".")
-	}
+	local extra = require ("lua/custom/plugins/" .. name:gsub("/","_"):gsub("%.","_"))
+	extra[1] = name
+	return extra
 end
 
 return {
@@ -28,18 +27,7 @@ return {
 	--	require('gitsigns').setup({ ... })
 	--
 	-- See `:help gitsigns` to understand what the configuration keys do
-	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
-		"lewis6991/gitsigns.nvim",
-		opts = {
-			signs = {
-				add = { text = "+" },
-				change = { text = "~" },
-				delete = { text = "_" },
-				topdelete = { text = "‾" },
-				changedelete = { text = "~" },
-			},
-		},
-	},
+	file "lewis6991/gitsigns.nvim",
 
 	-- NOTE: Plugins can also be configured to run lua code when they are loaded.
 	--
@@ -731,4 +719,3 @@ return {
 	--	For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
 	-- { import = 'custom.plugins' },
 }
-
