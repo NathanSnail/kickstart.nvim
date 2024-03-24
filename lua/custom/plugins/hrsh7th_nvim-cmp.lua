@@ -87,7 +87,7 @@ return {	event = "InsertEnter",
 					{ name = "nvim_lsp" },
 					{ name = "luasnip" },
 					{ name = "path" },
-					{ name = "crates" },
+					{ name = "buffer" },
 				},
 			}
 		end,

@@ -6,8 +6,8 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
-		{ "j-hui/fidget.nvim", opts = {}},
-		{"folke/neodev.nvim", opts = {}},
+		{ "j-hui/fidget.nvim", opts = {} },
+		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
@@ -156,11 +156,18 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
-			"rustfmt",
+			"black",
+			"flake8",
+			"isort",
+			"mypy",
+			"pylint",
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
 		require("mason-lspconfig").setup {
+			ensure_installed = {
+				"pyright",
+			},
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}

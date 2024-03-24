@@ -145,4 +145,4 @@ vim.opt.rtp:prepend(lazypath)
 -- NOTE: Here is where you install your plugins.
 require("lazy").setup (require "lua/custom/plugins")
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=4 sts=0 sw=0 noexpandtab
+-- vim: ts=6 sts=0 sw=0 noexpandtab
