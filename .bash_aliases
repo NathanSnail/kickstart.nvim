@@ -21,6 +21,9 @@ alias cls=clear # criminal offense but idc
 alias py=python3
 alias rgf='find . | rg' $1
 alias fd='cd $(find . -type d | fzf)'
+alias files='nautilus --browser .'
+alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
+alias bye='shutdown now'
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
