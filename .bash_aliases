@@ -24,6 +24,7 @@ alias fd='cd $(find . -type d | fzf)'
 alias files='nautilus --browser .'
 alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
 alias bye='shutdown now'
+alias chx='chmod +x' $1
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'

@@ -41,6 +41,6 @@ return {
 	file "nvim-tree/nvim-tree.lua",
 	file "NathanSnail/image.nvim",
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
-
+	{ "RaafatTurki/hex.nvim" },
 	-- require 'kickstart.plugins.debug',
 }

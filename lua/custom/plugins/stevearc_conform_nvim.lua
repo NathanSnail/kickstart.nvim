@@ -25,12 +25,10 @@ return {
 			objcpp = { "clang_format" },
 			cuda = { "clang_format" },
 			proto = { "clang_format" },
-			py = {
-				"black",
-				"flake8",
+			python = {
 				"isort",
-				"mypy",
-				"pylint",
+				"black",
+				"unexpand",
 			},
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
@@ -38,6 +36,12 @@ return {
 			-- You can use a sub-list to tell conform to run *until* a formatter
 			-- is found.
 			-- javascript = { { "prettierd", "prettier" } },
+		},
+		formatters = {
+			unexpand = {
+				command = "unexpand",
+				args = { "-t", "4" },
+			},
 		},
 	},
 }

@@ -103,7 +103,7 @@ return {
 		local servers = {
 			-- clangd = {},
 			-- gopls = {},
-			-- pyright = {},
+			pyright = {},
 			-- rust_analyzer ={} --- NOTE: idk i give up
 			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
 			--
@@ -156,18 +156,15 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
-			"black",
-			"flake8",
-			"isort",
-			"mypy",
-			"pylint",
+			"pyright", -- LSP for python
+			"ruff-lsp", -- linter for python (includes flake8, pep8, etc.)
+			"debugpy", -- debugger
+			"black", -- formatter
+			"isort", -- organize imports
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
 		require("mason-lspconfig").setup {
-			ensure_installed = {
-				"pyright",
-			},
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
