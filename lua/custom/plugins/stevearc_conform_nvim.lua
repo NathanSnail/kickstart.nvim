@@ -25,6 +25,7 @@ return {
 			objcpp = { "clang_format" },
 			cuda = { "clang_format" },
 			proto = { "clang_format" },
+			xml = { "xmlformat" },
 			python = {
 				"isort",
 				"black",
@@ -41,6 +42,12 @@ return {
 			unexpand = {
 				command = "unexpand",
 				args = { "-t", "4" },
+			},
+			xmlformat = {
+				args = { "--indent-char=\t", "-" },
+			},
+			clang_format = {
+				args = { "--style={UseTab: Always, IndentWidth: 8, TabWidth: 8}" },
 			},
 		},
 	},
