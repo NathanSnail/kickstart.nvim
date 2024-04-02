@@ -1,9 +1,9 @@
-return 	{dependencies = {
-			"nvim-lua/plenary.nvim", -- required
-			"sindrets/diffview.nvim", -- optional - Diff integration
+return {
+	dependencies = {
+		"nvim-lua/plenary.nvim", -- required
+		"sindrets/diffview.nvim", -- optional - Diff integration
 
-			"nvim-telescope/telescope.nvim",
-		},
-		config = true,
-	}
-
+		"nvim-telescope/telescope.nvim",
+	},
+	config = true,
+}

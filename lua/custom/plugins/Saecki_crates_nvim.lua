@@ -1,8 +1,5 @@
-return 	{event = { "BufRead Cargo.toml" },
-		opts = {
-			src = {
-				cmp = { enabled = true },
-			},
-		},
-	}
-
+return { event = { "BufRead Cargo.toml" }, opts = {
+	src = {
+		cmp = { enabled = true },
+	},
+} }
