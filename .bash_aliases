@@ -25,6 +25,7 @@ alias files='nautilus --browser .'
 alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
 alias bye='shutdown now'
 alias chx='chmod +x' $1
+alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
