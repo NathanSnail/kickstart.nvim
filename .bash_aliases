@@ -22,9 +22,13 @@ alias py=python3
 alias rgf='find . | rg' $1
 alias fd='cd $(find . -type d | fzf)'
 alias files='nautilus --browser .'
-alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
 alias bye='shutdown now'
 alias chx='chmod +x' $1
+
+# noita stuff
+alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
+alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
+alias data='cd ~/Documents/code/noitadata/data/'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
 
 # config editing
@@ -36,8 +40,6 @@ alias rrc='source ~/.bashrc'
 
 # cds
 alias cod='cd ~/Documents/code/'
-alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
-alias data='cd ~/Documents/code/noitadata/data/'
 alias ..='cd ..'
 alias ~='cd ~'
 alias r='cd /'

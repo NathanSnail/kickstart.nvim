@@ -42,5 +42,6 @@ return {
 	file "NathanSnail/image.nvim",
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "RaafatTurki/hex.nvim" },
+	file "ThePrimeagen/harpoon"
 	-- require 'kickstart.plugins.debug',
 }
