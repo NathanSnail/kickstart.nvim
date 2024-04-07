@@ -24,6 +24,10 @@ alias fd='cd $(find . -type d | fzf)'
 alias files='nautilus --browser .'
 alias bye='shutdown now'
 alias chx='chmod +x' $1
+alias kbar='killall -q polybar'
+alias get='sudo apt install -y'
+alias asrc='apt search'
+alias home='xrandr --output HDMI-1-0 --mode 1920x1080 --primary -r 144 --right-of eDP --output DisplayPort-1 --mode 3840x2160 --right-of HDMI-1-0'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
