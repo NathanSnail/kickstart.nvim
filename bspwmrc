@@ -1,0 +1,35 @@
+#! /bin/sh
+
+feh --bg-fill /home/nathan/Documents/bg.png
+picom --fading --fade-in-step 0.05 --fade-out-step 0.05 --fade-delta 5 --corner-radius 8 --backend glx &
+polybar & # this has messy padding
+dunst &
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc config border_width           	2
+bspc config window_gap             	4
+bspc config bottom_padding         	-4
+bspc config top_padding            	-4
+bspc config left_padding           	-4
+bspc config right_padding          	-4
+bspc config -m HDMI-1-0 top_padding	40
+
+bspc config focused_border_color "#ffa0ff"
+bspc config normal_border_color "#606090"
+bspc config active_border_color "#a060a0"
+
+bspc config split_ratio          0.52
+bspc config borderless_monocle   true
+bspc config gapless_monocle      true
+
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
+bspc rule -a Screenkey manage=off
+
+home
+
+bspc monitor HDMI-1-0 -d PI PII PII PIV PV
+bspc monitor DisplayPort-1 -d SI SII SII SIV SV
