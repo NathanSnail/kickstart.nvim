@@ -3,6 +3,13 @@
 #
 
 # custom
+
+ctrl + alt + 1
+	polybar-msg cmd hide
+
+ctrl + alt + 2
+	polybar-msg cmd show
+
 super + e
 	bspc node $(bspc query -N -n -n .!leaf || echo @/) -R 90
 
