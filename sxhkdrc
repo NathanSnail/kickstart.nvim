@@ -21,8 +21,14 @@ super + Return
 	kitty
 
 # program launcher
+super + r
+	rofi -show run
+
 super + space
-	dmenu_run -b
+	rofi -show drun
+
+super + c
+	rofi -show window
 
 # make sxhkd reload its configuration files:
 super + Escape

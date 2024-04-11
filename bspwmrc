@@ -31,5 +31,5 @@ bspc rule -a Screenkey manage=off
 
 home
 
-bspc monitor HDMI-1-0 -d PI PII PIII PIV PV
-bspc monitor DisplayPort-1 -d SI SII SIII SIV SV
+bspc monitor HDMI-0 -d PI PII PIII PIV PV
+bspc monitor DisplayPort-1-2 -d SI SII SIII SIV SV
