@@ -58,11 +58,37 @@ return {
 
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
-				map("F", vim.lsp.buf.hover, "[F]ind Documentation")
+				local timer_counter = 0
+				local timer = vim.uv.new_timer()
+				if timer ~= nil then
+					vim.api.nvim_create_autocmd({ "CursorMoved" }, {
+						buffer = event.buf,
+						callback = function()
+							timer_counter = timer_counter + 1
+							local timer_copy = timer_counter
+							timer:start(
+								250, -- if i stop typing for a bit i need hints
+								0,
+								vim.schedule_wrap(function()
+									if timer_copy == timer_counter then vim.lsp.buf.hover() end
+								end)
+							)
+						end,
+					})
+				else
+					print "TIMER FAILED!!"
+				end
+				map("F", function()
+					vim.lsp.buf.hover()
+				end, "[F]ind Documentation")
 
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+
+				map("gl", function()
+					vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled(nil))
+				end, "Show In[l]ay")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
