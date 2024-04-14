@@ -67,7 +67,7 @@ return {
 							timer_counter = timer_counter + 1
 							local timer_copy = timer_counter
 							timer:start(
-								250, -- if i stop typing for a bit i need hints
+								1000, -- if i stop typing for a bit i need hints
 								0,
 								vim.schedule_wrap(function()
 									if timer_copy == timer_counter then vim.lsp.buf.hover() end
