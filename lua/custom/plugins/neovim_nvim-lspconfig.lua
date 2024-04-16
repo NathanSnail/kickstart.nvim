@@ -60,17 +60,22 @@ return {
 				--  See `:help K` for why this keymap
 				local timer_counter = 0
 				local timer = vim.uv.new_timer()
+				local is_hovering = false
 				if timer ~= nil then
 					vim.api.nvim_create_autocmd({ "CursorMoved" }, {
 						buffer = event.buf,
 						callback = function()
+							is_hovering = false
 							timer_counter = timer_counter + 1
 							local timer_copy = timer_counter
 							timer:start(
 								1000, -- if i stop typing for a bit i need hints
 								0,
 								vim.schedule_wrap(function()
-									if timer_copy == timer_counter then vim.lsp.buf.hover() end
+									if timer_copy == timer_counter and not is_hovering then
+										vim.lsp.buf.hover()
+										is_hovering = true
+									end
 								end)
 							)
 						end,
@@ -80,6 +85,7 @@ return {
 				end
 				map("F", function()
 					vim.lsp.buf.hover()
+					is_hovering = true
 				end, "[F]ind Documentation")
 
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
