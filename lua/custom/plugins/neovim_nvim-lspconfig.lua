@@ -59,7 +59,8 @@ return {
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
 				local timer_counter = 0
-				local timer = vim.uv.new_timer()
+				local timer = nil -- vim.uv.new_timer()
+				--- TODO: I can't figure this out so i'm just leaving it here
 				local is_hovering = false
 				if timer ~= nil then
 					vim.api.nvim_create_autocmd({ "CursorMoved" }, {
@@ -72,6 +73,7 @@ return {
 								1000, -- if i stop typing for a bit i need hints
 								0,
 								vim.schedule_wrap(function()
+									if vim.api.nvim_get_mode().mode ~= "n" then return end
 									if timer_copy == timer_counter and not is_hovering then
 										vim.lsp.buf.hover()
 										is_hovering = true
