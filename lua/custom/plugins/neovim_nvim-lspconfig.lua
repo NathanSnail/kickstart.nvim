@@ -148,7 +148,7 @@ return {
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			-- tsserver = {},
 			--
-
+			hls = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
@@ -196,6 +196,7 @@ return {
 			"xmlformatter", -- xml format
 			"clang-format", -- c like formatter
 			"clangd", -- its c++ / c
+			"hls",
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 

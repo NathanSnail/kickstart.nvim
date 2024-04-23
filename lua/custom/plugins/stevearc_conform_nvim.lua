@@ -41,7 +41,7 @@ return {
 		formatters = {
 			unexpand = {
 				command = "unexpand",
-				args = { "-t", "4" },
+				args = { "-t", "4", "--first-only" },
 			},
 			xmlformat = {
 				args = { "--indent-char=\t", "-" },

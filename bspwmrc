@@ -33,3 +33,4 @@ home
 
 bspc monitor HDMI-0 -d PI PII PIII PIV PV
 bspc monitor DisplayPort-1-2 -d SI SII SIII SIV SV
+

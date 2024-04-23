@@ -21,6 +21,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		"NathanSnail/noita_nvim",
 
 		"Saecki/crates.nvim",
 		event = { "BufRead Cargo.toml" },
@@ -89,6 +90,7 @@ return {
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
+				{ name = "noita" },
 			},
 		}
 	end,
