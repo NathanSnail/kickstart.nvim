@@ -44,4 +44,5 @@ return {
 	{ "RaafatTurki/hex.nvim" },
 	file "ThePrimeagen/harpoon",
 	-- require 'kickstart.plugins.debug',
+	{ "tikhomirov/vim-glsl" },
 }

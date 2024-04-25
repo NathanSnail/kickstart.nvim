@@ -83,7 +83,7 @@ return {
 						end,
 					})
 				else
-					print "TIMER FAILED!!"
+					-- print "TIMER FAILED!!"
 				end
 				map("F", function()
 					vim.lsp.buf.hover()
@@ -149,6 +149,7 @@ return {
 			-- tsserver = {},
 			--
 			hls = {},
+			glsl_analyzer = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
@@ -196,7 +197,8 @@ return {
 			"xmlformatter", -- xml format
 			"clang-format", -- c like formatter
 			"clangd", -- its c++ / c
-			"hls",
+			"hls", -- haskell lsp
+			"glsl_analyzer", -- glsl lsp
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
