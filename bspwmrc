@@ -4,6 +4,7 @@ feh --bg-fill /home/nathan/Documents/bg.png
 picom --fading --fade-in-step 0.05 --fade-out-step 0.05 --fade-delta 5 --corner-radius 8 --backend glx &
 polybar & # this has messy padding
 dunst &
+xmousepasteblock &
 
 pgrep -x sxhkd > /dev/null || sxhkd &
 

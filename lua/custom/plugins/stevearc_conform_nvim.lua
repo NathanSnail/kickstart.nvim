@@ -2,12 +2,35 @@ return {
 	keys = {
 		{
 			-- Customize or remove this keymap to your liking
-			"<leader>f",
+			"<leader>ff",
 			function()
 				require("conform").format { async = true, lsp_fallback = true }
 			end,
 			mode = "",
-			desc = "Format buffer",
+			desc = "[F]ormat [F]ile",
+		},
+		{
+			"<leader>fw",
+			function()
+				local cwd = vim.fn.getcwd()
+				print(cwd)
+				local function traverse(path)
+					--local scanner = vim.loop.fs_scandir(path)
+					local fs = vim.uv.fs_scandir(path)
+					if fs == nil then
+						print "fs nil!"
+						return
+					end
+					repeat
+						local t = vim.uv.fs_scandir_next(fs)
+						print(t)
+					until t == nil
+				end
+				traverse(cwd)
+				--require("conform").format { async = true, lsp_fallback = true }
+			end,
+			mode = "",
+			desc = "Format workspace",
 		},
 	},
 	opts = {
