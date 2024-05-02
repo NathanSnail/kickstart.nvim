@@ -45,4 +45,14 @@ return {
 	file "ThePrimeagen/harpoon",
 	-- require 'kickstart.plugins.debug',
 	{ "tikhomirov/vim-glsl" },
+	{ "kaarmu/typst.vim", ft = "typst", lazy = false },
+	{
+		"chomosuke/typst-preview.nvim",
+		lazy = false, -- or ft = 'typst'
+		version = "0.1.*",
+		ft = "typst",
+		build = function()
+			require("typst-preview").update()
+		end,
+	},
 }
