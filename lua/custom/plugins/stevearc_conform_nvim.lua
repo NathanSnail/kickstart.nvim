@@ -48,7 +48,7 @@ return {
 			objcpp = { "clang_format" },
 			cuda = { "clang_format" },
 			proto = { "clang_format" },
-			xml = { "xmlformat" },
+			-- xml = { "xmlformat" },
 			python = {
 				"isort",
 				"black",
