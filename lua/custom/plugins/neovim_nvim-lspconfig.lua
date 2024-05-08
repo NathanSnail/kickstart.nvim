@@ -148,6 +148,7 @@ return {
 			-- But for many setups, the LSP (`tsserver`) will work just fine
 			-- tsserver = {},
 			--
+			rust_analyzer = {},
 			hls = {},
 			glsl_analyzer = {},
 			lua_ls = {
@@ -199,6 +200,7 @@ return {
 			"clangd", -- its c++ / c
 			"hls", -- haskell lsp
 			"glsl_analyzer", -- glsl lsp
+			"rust_analyzer", -- rust lsp
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 

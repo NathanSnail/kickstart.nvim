@@ -15,8 +15,11 @@ local function force(name)
 	return { name, opts = {} }
 end
 
+vim.g.rust_recommended_style = 0
+
 return {
-	"tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
+	-- NOTE: don't use spaces ever.
 
 	-- "gc" to comment visual regions/lines
 	force "numToStr/Comment.nvim",
@@ -55,4 +58,5 @@ return {
 			require("typst-preview").update()
 		end,
 	},
+	"lambdalisue/suda.vim",
 }
