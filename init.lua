@@ -84,6 +84,10 @@ nmap("t", "<C-space>", "<space>")
 nmap("t", "<S-space>", "<space>")
 nmap("t", "<C-Bs>", "<Bs>")
 nmap("t", "<S-Bs>", "<Bs>")
+--[[nmap("n", "<C-S-h>", "<C-w><Left>")
+nmap("n", "<C-S-l>", "<C-w><Left>")
+nmap("n", "<C-S-k>", "<C-w>+")
+nmap("n", "<C-S-j>", "<C-w>-")]]
 
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")

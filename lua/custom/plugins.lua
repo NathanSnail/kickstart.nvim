@@ -17,6 +17,16 @@ end
 
 vim.g.rust_recommended_style = 0
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "*.py" },
+	callback = function()
+		print "hi"
+		vim.opt.foldmethod = "expr"
+		vim.cmd "set foldexpr=nvim_treesitter#foldexpr()"
+		vim.opt.foldenable = false
+	end,
+})
+
 return {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
@@ -39,7 +49,6 @@ return {
 	file "echasnovski/mini.nvim",
 
 	file "nvim-treesitter/nvim-treesitter",
-	file "NeogitOrg/neogit",
 	file "bluz71/vim-nightfly-colors",
 	file "nvim-tree/nvim-tree.lua",
 	file "NathanSnail/image.nvim",
@@ -59,4 +68,5 @@ return {
 		end,
 	},
 	"lambdalisue/suda.vim",
+	"mbbill/undotree",
 }
