@@ -34,6 +34,7 @@ return {
 	-- "gc" to comment visual regions/lines
 	force "numToStr/Comment.nvim",
 	file "lewis6991/gitsigns.nvim",
+	-- maybe not the cause --TODO: reenable gitsigns when crash fixed.
 	file "folke/which-key.nvim",
 	file "nvim-telescope/telescope.nvim",
 	file "neovim/nvim-lspconfig",
