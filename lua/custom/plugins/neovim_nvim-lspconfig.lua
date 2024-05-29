@@ -85,7 +85,7 @@ return {
 				else
 					-- print "TIMER FAILED!!"
 				end
-				map("F", function()
+				map("<A-f>", function()
 					vim.lsp.buf.hover()
 					is_hovering = true
 				end, "[F]ind Documentation")
