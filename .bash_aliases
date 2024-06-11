@@ -30,6 +30,14 @@ alias asrc='apt search'
 alias home='xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DisplayPort-1-2 --mode 3840x2160 --right-of HDMI-0 & xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DP-0 --mode 3840x2160 --right-of HDMI-0'
 alias uni='bspc monitor DP-2 -d I II III IV V'
 alias hist='git log --graph --oneline --decorate'
+for_each_line() {
+	while IFS= read -r line; do
+		printf '%s\n' "$line"
+		line=$line "$@"
+	done
+}
+alias night='xrandr --output DisplayPort-1-2 --gamma 1.0:0.88:0.66 --brightness 0.55 & xrandr --output HDMI-0 --gamma 1.0:0.88:0.76 --brightness 1'
+alias day='xrandr --output DisplayPort-1-2 --gamma 1.0:1.0:1.0 --brightness 1 & xrandr --output HDMI-0 --gamma 1.0:1.0:1.0 --brightness 1'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
