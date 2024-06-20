@@ -14,9 +14,6 @@ super + e
 Print
 	flameshot gui
 
-super + k
-	xkill
-
 # terminal emulator
 super + Return
 	kitty
