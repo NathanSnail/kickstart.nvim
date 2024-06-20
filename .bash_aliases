@@ -1,4 +1,6 @@
 # vim
+# silly script no more
+alias nvim_term=nvim
 alias e='nvim_term'
 alias v=nvim
 alias vi=nvim
@@ -40,7 +42,7 @@ alias night='xrandr --output DisplayPort-1-2 --gamma 1.0:0.88:0.66 --brightness 
 alias day='xrandr --output DisplayPort-1-2 --gamma 1.0:1.0:1.0 --brightness 1 & xrandr --output HDMI-0 --gamma 1.0:1.0:1.0 --brightness 1'
 
 # noita stuff
-alias ghidra='~/Documents/ghidra/ghidra_11.0.1_PUBLIC/ghidraRun'
+alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
 alias data='cd ~/Documents/code/noitadata/data/'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"

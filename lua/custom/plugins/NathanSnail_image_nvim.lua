@@ -1,6 +1,7 @@
 return {
 	event = "VeryLazy",
 	dependencies = {
+		{ "luarocks.nvim" },
 		{
 			"nvim-treesitter/nvim-treesitter",
 			build = ":TSUpdate",

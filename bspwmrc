@@ -1,5 +1,9 @@
 #! /bin/sh
-
+GTK_IM_MODULE=ibus
+QT_IM_MODULE=ibus
+XMODIFIERS=@im=ibus 
+setxkbmap -option compose:ralt
+ibus-daemon -rxRd
 feh --bg-fill /home/nathan/Documents/bg.png
 picom --fading --fade-in-step 0.05 --fade-out-step 0.05 --fade-delta 5 --corner-radius 8 --backend glx &
 polybar & # this has messy padding
