@@ -136,7 +136,6 @@ return {
 		--		For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
 			clangd = {},
-			-- gopls = {},
 			pyright = {},
 			lemminx = {},
 			-- rust_analyzer ={} --- NOTE: idk i give up
@@ -151,6 +150,12 @@ return {
 			rust_analyzer = {},
 			hls = {},
 			glsl_analyzer = {},
+			gopls = {
+				root_dir = function(fname)
+					local util = require "lspconfig.util"
+					return util.root_pattern "go.work"(fname) or util.root_pattern("go.mod", ".git")(fname)
+				end,
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
@@ -201,6 +206,7 @@ return {
 			"hls", -- haskell lsp
 			"glsl_analyzer", -- glsl lsp
 			"rust_analyzer", -- rust lsp
+			"gopls",
 		})
 		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
 
