@@ -69,7 +69,8 @@ vim.opt.scrolloff = 15
 --- NOTE: Nathan changes
 
 -- The silly tree
-vim.keymap.set("n", "<C-t>", ":NvimTreeOpen<CR>")
+vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<CS-d>", ':let @+ = "data/" .. expand("%")<CR>')
 --- NOTE: Luarocks feature
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
@@ -151,6 +152,6 @@ vim.opt.rtp:prepend(lazypath)
 --	:Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require("lazy").setup (require "lua/custom/plugins")
+require("lazy").setup(require "lua/custom/plugins")
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=6 sts=0 sw=0 noexpandtab

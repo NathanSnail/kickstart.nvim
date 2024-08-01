@@ -52,7 +52,7 @@ return {
 	file "nvim-treesitter/nvim-treesitter",
 	file "bluz71/vim-nightfly-colors",
 	file "nvim-tree/nvim-tree.lua",
-	file "NathanSnail/image.nvim",
+	--file "NathanSnail/image.nvim",
 	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "RaafatTurki/hex.nvim" },
 	file "ThePrimeagen/harpoon",

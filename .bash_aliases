@@ -46,13 +46,15 @@ alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
 alias data='cd ~/Documents/code/noitadata/data/'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
+alias ecdoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/component_documentation.txt'
+alias eldoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/lua_api_documentation.txt'
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
 alias epl='cd ~/.config/nvim/lua/custom/; e'
 alias ebash='e ~/.bash_aliases'
 alias conf='cd ~/.config/nvim/; e'
-alias rrc='source ~/.bashrc'
+alias rrc='source ~/.zshrc'
 
 # cds
 alias cod='cd ~/Documents/code/'
