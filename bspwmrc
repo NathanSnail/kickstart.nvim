@@ -40,3 +40,6 @@ bspc monitor HDMI-0 -d PI PII PIII PIV PV
 bspc monitor DisplayPort-1-2 -d SI SII SIII SIV SV
 bspc monitor DP-0 -d SI SII SIII SIV SV
 
+bspc config pointer_follows_focus true
+bspc config pointer_follows_monitor true
+bspc config focus_follows_pointer true

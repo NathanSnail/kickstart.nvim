@@ -22,7 +22,7 @@ alias wink='lxc stop windows'
 alias cls=clear # criminal offense but idc
 alias py=python3
 alias rgf='find . | rg' $1
-alias fd='cd $(find . -type d | fzf)'
+alias fd='z $(find . -type d | fzf)'
 alias files='nautilus --browser .'
 alias bye='shutdown now'
 alias chx='chmod +x' $1
@@ -58,7 +58,7 @@ alias rrc='source ~/.zshrc'
 
 # cds
 alias cod='cd ~/Documents/code/'
-alias ..='cd ..'
-alias ~='cd ~'
-alias r='cd /'
-alias b='cd -'
+alias ..='z ..'
+alias ~='z ~'
+alias r='z /'
+alias b='z -'
