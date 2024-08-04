@@ -156,6 +156,21 @@ return {
 					return util.root_pattern "go.work"(fname) or util.root_pattern("go.mod", ".git")(fname)
 				end,
 			},
+			matlab_ls = {
+				matlab = {
+					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					indexWorkspace = true,
+					--installPath = "/home/nathan/MATLAB/R2024a/",
+					matlabConnectionTiming = "onStart",
+				},
+				root_dir = function(fname)
+					return require("lspconfig.util").find_git_ancestor(fname)
+						or require("lspconfig.util").root_pattern "compile_commands.json"(fname)
+						or require("lspconfig.util").root_pattern "Makefile"(fname)
+						or require("lspconfig.util").root_pattern "xmake.lua"(fname)
+				end,
+				single_file_support = true,
+			},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},

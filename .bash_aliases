@@ -40,6 +40,8 @@ for_each_line() {
 }
 alias night='xrandr --output DisplayPort-1-2 --gamma 1.0:0.88:0.66 --brightness 0.55 & xrandr --output HDMI-0 --gamma 1.0:0.88:0.76 --brightness 1'
 alias day='xrandr --output DisplayPort-1-2 --gamma 1.0:1.0:1.0 --brightness 1 & xrandr --output HDMI-0 --gamma 1.0:1.0:1.0 --brightness 1'
+alias doptr='bspc config pointer_follows_focus true && bspc config pointer_follows_monitor true && bspc config focus_follows_pointer true'
+alias noptr='bspc config pointer_follows_focus false && bspc config pointer_follows_monitor false && bspc config focus_follows_pointer false'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
