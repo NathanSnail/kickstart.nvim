@@ -68,6 +68,8 @@ vim.opt.scrolloff = 15
 
 --- NOTE: Nathan changes
 
+vim.opt.tabstop = 6
+vim.opt.shiftwidth = 6
 -- The silly tree
 vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<CS-d>", ':let @+ = "data/" .. expand("%")<CR>')
