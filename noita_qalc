@@ -1,0 +1,7 @@
+f = s/60
+px = m/10
+chunk = 512 * px
+w = 512 * chunk
+ng = 70 * chunk
+ngp = 64 * chunk
+gs = 61f

@@ -51,6 +51,7 @@ alias data='cd ~/Documents/code/noitadata/data/'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
 alias ecdoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/component_documentation.txt'
 alias eldoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/lua_api_documentation.txt'
+alias nqc='qalc -i -f ~/Documents/code/kickstart.nvim/noita_qalc'
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
