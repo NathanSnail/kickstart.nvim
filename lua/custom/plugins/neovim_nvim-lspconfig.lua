@@ -185,6 +185,7 @@ return {
 							library = {
 								"${3rd}/luv/library",
 								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
+								"~/.luarocks/"
 								--unpack(vim.api.nvim_get_runtime_file("", true)),
 							},
 						},
