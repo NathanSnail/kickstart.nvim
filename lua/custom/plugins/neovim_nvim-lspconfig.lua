@@ -179,13 +179,14 @@ return {
 					Lua = {
 						runtime = { version = "LuaJIT" },
 						workspace = {
+							ignoreSubmodules = false,
 							checkThirdParty = false,
 							-- Tells lua_ls where to find all the Lua files that you have loaded
 							-- for your neovim configuration.
 							library = {
 								"${3rd}/luv/library",
 								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
-								"~/.luarocks/"
+								"~/.luarocks/",
 								--unpack(vim.api.nvim_get_runtime_file("", true)),
 							},
 						},
