@@ -16,9 +16,9 @@ function camp() {
 }
 alias t='tree -L 2'
 alias cat=bat
-alias wina='lxc console windows --type=vga'
-alias wins='lxc start windows --console=vga'
-alias wink='lxc stop windows'
+alias wina='sudo lxc console win11 --type=vga'
+alias wins='sudo lxc start win11 --console=vga'
+alias wink='sudo lxc stop win11'
 alias cls=clear # criminal offense but idc
 alias py=python3
 alias rgf='find . | rg' $1
@@ -43,6 +43,14 @@ alias night='xrandr --output DisplayPort-1-2 --gamma 1.0:0.88:0.66 --brightness 
 alias day='xrandr --output DisplayPort-1-2 --gamma 1.0:1.0:1.0 --brightness 1 & xrandr --output HDMI-0 --gamma 1.0:1.0:1.0 --brightness 1'
 alias doptr='bspc config pointer_follows_focus true && bspc config pointer_follows_monitor true && bspc config focus_follows_pointer true'
 alias noptr='bspc config pointer_follows_focus false && bspc config pointer_follows_monitor false && bspc config focus_follows_pointer false'
+unic() {
+	gcc -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c99 $1 -o out && ./out
+}
+alias ctest='py /home/nathan/Documents/code/uni_c_tester/check_c.py' $1
+alias yy='xclip -sel clip'
+alias p='xclip -o'
+alias where='echo $PWD'
+alias what='echo $?'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
