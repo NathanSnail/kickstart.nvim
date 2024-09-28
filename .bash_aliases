@@ -60,6 +60,11 @@ alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch
 alias ecdoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/component_documentation.txt'
 alias eldoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/lua_api_documentation.txt'
 alias nqc='qalc -i -f ~/Documents/code/kickstart.nvim/noita_qalc'
+function wmod() {
+	cd /home/nathan/.local/share/Steam/steamapps/workshop/content/881100 &&
+	cd $(find . -maxdepth 2 | rg mod_id.txt | xargs -I {} sh -c 'rg -i $1 < {} > /dev/null && echo $(echo {} | sed "s/mod_id.txt//g")' -- "$1") &&
+	cat mod_id.txt
+}
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
