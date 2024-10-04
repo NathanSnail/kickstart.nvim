@@ -56,6 +56,7 @@ alias what='echo $?'
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
 alias data='cd ~/Documents/code/noitadata/data/'
+alias noita='z /home/nathan/.local/share/Steam/steamapps/common/Noita'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
 alias ecdoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/component_documentation.txt'
 alias eldoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/lua_api_documentation.txt'
