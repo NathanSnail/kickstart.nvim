@@ -22,7 +22,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	callback = function()
 		print "hi"
 		vim.opt.foldmethod = "expr"
-		vim.cmd "set foldexpr=nvim_treesitter#foldexpr()"
 		vim.opt.foldenable = false
 	end,
 })
@@ -31,10 +30,7 @@ return {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
 
-	-- "gc" to comment visual regions/lines
-	force "numToStr/Comment.nvim",
 	file "lewis6991/gitsigns.nvim",
-	file "folke/which-key.nvim",
 	file "nvim-telescope/telescope.nvim",
 	file "neovim/nvim-lspconfig",
 
@@ -51,8 +47,6 @@ return {
 	file "nvim-treesitter/nvim-treesitter",
 	file "bluz71/vim-nightfly-colors",
 	file "nvim-tree/nvim-tree.lua",
-	--file "NathanSnail/image.nvim",
-	{ "lukas-reineke/indent-blankline.nvim", main = "ibl", opts = {} },
 	{ "RaafatTurki/hex.nvim" },
 	file "ThePrimeagen/harpoon",
 	-- require 'kickstart.plugins.debug',
