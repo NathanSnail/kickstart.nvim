@@ -18,11 +18,20 @@ end
 vim.g.rust_recommended_style = 0
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "*.py" },
-	callback = function()
-		print "hi"
-		vim.opt.foldmethod = "expr"
-		vim.opt.foldenable = false
+	pattern = { "*" },
+	callback = function(event)
+		local buf = event.buf
+		vim.api.nvim_buf_create_user_command(buf, "Noiter", function()
+			local path = vim.api.nvim_buf_get_name(buf)
+			for x in path:gmatch "/mods/.*" do
+				vim.fn.setreg("+", x:sub(2))
+				return
+			end
+			for x in path:gmatch "/data/.*" do
+				vim.fn.setreg("+", x:sub(2))
+				return
+			end
+		end, { bang = true })
 	end,
 })
 
