@@ -70,7 +70,7 @@ return {
 				args = { "--indent-char=\t", "-" },
 			},
 			clang_format = {
-				args = { "--style={UseTab: Always, IndentWidth: 8, TabWidth: 8}" },
+				args = { "--style={UseTab: Always, IndentWidth: 6, TabWidth: 6}" },
 			},
 		},
 	},
