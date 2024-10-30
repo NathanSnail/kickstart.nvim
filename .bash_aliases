@@ -46,11 +46,15 @@ alias noptr='bspc config pointer_follows_focus false && bspc config pointer_foll
 unic() {
 	gcc -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c99 $1 -o out && ./out
 }
+valc() {
+	gcc -Wall -Wextra -Werror -Wpedantic -pedantic-errors -std=c99 -g $1 -o out && valgrind --leak-check=full --track-origins=yes -s ./out
+}
 alias ctest='py /home/nathan/Documents/code/uni_c_tester/check_c.py' $1
 alias yy='xclip -sel clip'
 alias p='xclip -o'
 alias where='echo $PWD'
 alias what='echo $?'
+alias matlab='/home/nathan/MATLAB/R2024a/bin/matlab'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
