@@ -50,6 +50,13 @@ return {
 
 	-- Highlight todo, notes, etc in comments
 	{ "folke/todo-comments.nvim", event = "VimEnter", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
+	{
+		"noita-modman",
+		dir = "~/Documents/code/noita-modman",
+		config = function()
+			require("noita-modman").setup "/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml"
+		end,
+	},
 
 	file "echasnovski/mini.nvim",
 
