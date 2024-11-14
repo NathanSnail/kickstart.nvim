@@ -72,7 +72,7 @@ vim.opt.tabstop = 6
 vim.opt.shiftwidth = 6
 -- The silly tree
 vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
-vim.keymap.set("n", "<CS-d>", ':let @+ = "data/" .. expand("%")<CR>')
+vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
 --- NOTE: Luarocks feature
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
