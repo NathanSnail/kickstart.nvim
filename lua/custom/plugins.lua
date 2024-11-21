@@ -79,4 +79,6 @@ return {
 	},
 	"lambdalisue/suda.vim",
 	"mbbill/undotree",
+	-- TODO: make this work
+	-- "DariusCorvus/tree-sitter-language-injection.nvim",
 }
