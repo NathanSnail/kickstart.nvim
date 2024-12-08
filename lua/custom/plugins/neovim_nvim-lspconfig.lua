@@ -138,15 +138,7 @@ return {
 			clangd = {},
 			pyright = {},
 			lemminx = {},
-			-- rust_analyzer ={} --- NOTE: idk i give up
-			-- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
-			--
-			-- Some languages (like typescript) have entire language plugins that can be useful:
-			--	https://github.com/pmizio/typescript-tools.nvim
-			--
-			-- But for many setups, the LSP (`tsserver`) will work just fine
-			-- tsserver = {},
-			--
+			-- python_lsp_server
 			rust_analyzer = {},
 			hls = {},
 			glsl_analyzer = {},
@@ -212,8 +204,7 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
 			"pyright", -- LSP for python
-			"ruff-lsp", -- linter for python (includes flake8, pep8, etc.)
-			"debugpy", -- debugger
+			"python-lsp-server",
 			"black", -- formatter
 			"isort", -- organize imports
 			"lemminx", -- xml lsp

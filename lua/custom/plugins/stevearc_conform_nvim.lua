@@ -52,7 +52,7 @@ return {
 			python = {
 				"isort",
 				"black",
-				"unexpand",
+				-- "unexpand", it's just too hard to go against the python formatter, even though it's clearly wrong
 			},
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
