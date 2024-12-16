@@ -17,10 +17,37 @@ end
 
 vim.g.rust_recommended_style = 0
 
+local themes = {
+	"folke/tokyonight.nvim",
+	"EdenEast/nightfox.nvim",
+	"catppuccin/nvim",
+	"rebelot/kanagawa.nvim",
+	"navarasu/onedark.nvim",
+	"neanias/everforest-nvim",
+	"sho-87/kanagawa-paper.nvim",
+	"comfysage/evergarden",
+	"sainnhe/edge",
+}
+
+local colourschemes = {
+	"nightfly",
+	"retrobox",
+	"randomhue",
+	"catppuccin-mocha",
+	"onedark",
+	"kanagawa-wave",
+	"everforest",
+	"edge",
+}
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*" },
 	callback = function(event)
 		local buf = event.buf
+		vim.api.nvim_buf_create_user_command(buf, "Paint", function()
+			local choice = colourschemes[math.random(#colourschemes)]
+			vim.api.nvim_command(":colo " .. choice)
+		end, { bang = true })
 		vim.api.nvim_buf_create_user_command(buf, "Noiter", function()
 			local path = vim.api.nvim_buf_get_name(buf)
 			for x in path:gmatch "/mods/.*" do
@@ -35,7 +62,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
-return {
+vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
+local ret = {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
 
@@ -82,3 +110,9 @@ return {
 	-- TODO: make this work
 	-- "DariusCorvus/tree-sitter-language-injection.nvim",
 }
+
+for _, v in ipairs(themes) do
+	table.insert(ret, { v })
+end
+
+return ret
