@@ -204,7 +204,7 @@ return {
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
 			"pyright", -- LSP for python
-			"python-lsp-server",
+			-- "python-lsp-server",
 			"black", -- formatter
 			"isort", -- organize imports
 			"lemminx", -- xml lsp
