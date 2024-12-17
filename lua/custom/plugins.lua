@@ -38,6 +38,7 @@ local colourschemes = {
 	"kanagawa-wave",
 	"everforest",
 	"edge",
+	"carbonfox",
 }
 local scheme = "nightfly"
 
