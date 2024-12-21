@@ -27,6 +27,7 @@ local themes = {
 	"sho-87/kanagawa-paper.nvim",
 	"comfysage/evergarden",
 	"sainnhe/edge",
+	"Shatur/neovim-ayu",
 }
 
 local colourschemes = {
@@ -39,7 +40,10 @@ local colourschemes = {
 	"everforest",
 	"edge",
 	"carbonfox",
+	"ayu-dark",
+	"ayu-mirage",
 }
+
 local scheme = "nightfly"
 
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {

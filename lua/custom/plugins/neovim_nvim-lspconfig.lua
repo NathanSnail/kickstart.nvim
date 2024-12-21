@@ -137,7 +137,16 @@ return {
 		local servers = {
 			clangd = {},
 			pyright = {},
-			lemminx = {},
+			lemminx = {
+				settings = {
+					xml = {
+						fileAssociations = { {
+							systemId = "file:///home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
+							pattern = "*",
+						} },
+					},
+				},
+			},
 			-- python_lsp_server
 			rust_analyzer = {},
 			hls = {},

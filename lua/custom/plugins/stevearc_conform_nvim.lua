@@ -50,7 +50,7 @@ return {
 			proto = { "clang_format" },
 			-- xml = { "xmlformat" },
 			python = {
-				"isort",
+				-- "isort",
 				"black",
 				-- "unexpand", it's just too hard to go against the python formatter, even though it's clearly wrong
 			},
