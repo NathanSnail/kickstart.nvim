@@ -35,6 +35,8 @@ local colourschemes = {
 	"retrobox",
 	"randomhue",
 	"catppuccin-mocha",
+	"catppuccin-macchiato",
+	"catppuccin-frappe",
 	"onedark",
 	"kanagawa-wave",
 	"everforest",
