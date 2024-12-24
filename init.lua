@@ -92,6 +92,32 @@ nmap("n", "<C-S-l>", "<C-w><Left>")
 nmap("n", "<C-S-k>", "<C-w>+")
 nmap("n", "<C-S-j>", "<C-w>-")]]
 
+-- vim.opt.includeexpr = [[substitute(v:fname, '^file://\(.*\)#L\(\d\+\)', '\1', '')]]
+
+nmap("n", "gf", function()
+	print "hi"
+	local cur_line = vim.api.nvim_get_current_line()
+	local cursor = vim.api.nvim_win_get_cursor(0)
+	local FILE = "file://"
+	local start_section = cur_line:sub(1, cursor[2] + FILE:len())
+	local file_begin = start_section:find(FILE)
+	if file_begin == nil then return end
+	local path_container = cur_line:sub(file_begin)
+	print(path_container)
+	local path_end = path_container:find "[ )]"
+	local path = path_container:sub(1, path_end)
+	local line
+	if path:find "#L" then
+		line = tonumber(path:sub(path:find "#L" + 2))
+		path = path:sub(1, path:find "#L" - 1)
+	end
+	if line then
+		vim.api.nvim_command(":edit +" .. line .. " " .. path)
+	else
+		vim.api.nvim_command(":edit " .. path)
+	end
+end, { noremap = true, silent = true })
+
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
