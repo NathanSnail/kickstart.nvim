@@ -74,7 +74,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
-vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
 local ret = {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
@@ -102,7 +101,14 @@ local ret = {
 
 	file "nvim-treesitter/nvim-treesitter",
 	file "bluz71/vim-nightfly-colors",
-	file "nvim-tree/nvim-tree.lua",
+	-- file "nvim-tree/nvim-tree.lua",
+	{
+		"stevearc/oil.nvim",
+		opts = {},
+		-- Optional dependencies
+		dependencies = { { "echasnovski/mini.icons", opts = {} } },
+		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
+	},
 	{ "RaafatTurki/hex.nvim" },
 	file "ThePrimeagen/harpoon",
 	-- require 'kickstart.plugins.debug',

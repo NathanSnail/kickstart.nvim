@@ -68,10 +68,12 @@ vim.opt.scrolloff = 15
 
 --- NOTE: Nathan changes
 
+vim.opt.equalalways = false
 vim.opt.tabstop = 6
 vim.opt.shiftwidth = 6
 -- The silly tree
-vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
+--vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
+vim.keymap.set("n", "<C-t>", ":10sp +term<CR>")
 vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
 --- NOTE: Luarocks feature
 package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
