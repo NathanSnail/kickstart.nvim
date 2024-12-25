@@ -102,13 +102,7 @@ local ret = {
 	file "nvim-treesitter/nvim-treesitter",
 	file "bluz71/vim-nightfly-colors",
 	-- file "nvim-tree/nvim-tree.lua",
-	{
-		"stevearc/oil.nvim",
-		opts = {},
-		-- Optional dependencies
-		dependencies = { { "echasnovski/mini.icons", opts = {} } },
-		-- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
-	},
+	file "stevearc/oil.nvim",
 	{ "RaafatTurki/hex.nvim" },
 	file "ThePrimeagen/harpoon",
 	-- require 'kickstart.plugins.debug',
