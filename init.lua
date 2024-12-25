@@ -108,12 +108,16 @@ nmap("n", "gf", function()
 	print(path_container)
 	local path_end = path_container:find "[ )]"
 	local path = path_container:sub(1, path_end)
+	print(path)
 	local line
 	if path:find "#L" then
 		line = tonumber(path:sub(path:find "#L" + 2))
 		path = path:sub(1, path:find "#L" - 1)
 	end
+	path = path:sub(FILE:len() + 1)
+	print(path)
 	if line then
+		print(line)
 		vim.api.nvim_command(":edit +" .. line .. " " .. path)
 	else
 		vim.api.nvim_command(":edit " .. path)
