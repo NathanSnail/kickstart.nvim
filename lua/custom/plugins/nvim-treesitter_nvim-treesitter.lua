@@ -8,7 +8,7 @@ return {
 			ensure_installed = { "bash", "c", "html", "lua", "markdown", "markdown_inline", "vim", "vimdoc", "ron", "toml", "python", "go" },
 			-- Autoinstall languages that are not installed
 			auto_install = true,
-			highlight = { enable = true },
+			highlight = { enable = true, disable = { "xml", "xsd" } },
 			indent = { enable = true },
 		}
 
