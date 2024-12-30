@@ -1,0 +1,22 @@
+[Desktop Entry]
+
+# The type as listed above
+Type=Application
+
+# The name of the application
+Name=Neovim
+
+# The path to the folder in which the executable is run
+Path=/usr/bin/
+
+# The executable of the application, possibly with arguments.
+Exec=kitty -e nvim %F
+
+# The name of the icon that will be used to display this entry
+Icon=/home/nathan/.local/share/applications/nvim.png
+
+# Describes whether this application needs to be run in a terminal or not
+Terminal=false
+
+# Describes the categories in which this entry should be shown
+MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
