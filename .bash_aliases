@@ -30,7 +30,7 @@ alias kbar='killall -q polybar'
 alias get='sudo apt install -y'
 alias asrc='apt search'
 alias home='xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DisplayPort-1-2 --mode 3840x2160 --right-of HDMI-0 & xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DP-0 --mode 3840x2160 --right-of HDMI-0'
-alias standard='home ; xrandr --output DP-2 --right-of DisplayPort-1-2 ; killall -q picom ; ~/.config/bspwm/bspwmrc ; kbar ; xrandr --output DisplayPort-2-2 --mode 3840x2160 --right-of HDMI-0 ; xrandr --output DP-2 --right-of DisplayPort-2-2 ; feh --bg-fill /home/nathan/Documents/bg.png'
+alias standard='home ; xrandr --output DP-2 --right-of DisplayPort-1-2 ; killall -q picom ; ~/.config/bspwm/bspwmrc ; kbar ; xrandr --output DisplayPort-2-2 --mode 3840x2160 --right-of HDMI-0 ; xrandr --output DP-2 --right-of DisplayPort-2-2 ; feh --bg-fill /home/nathan/Documents/bg.png ; picom --backend glx & disown'
 alias uni='bspc monitor DP-2 -d I II III IV V'
 alias hist='git log --graph --oneline --decorate'
 for_each_line() {
