@@ -96,8 +96,40 @@ nmap("n", "<C-S-j>", "<C-w>-")]]
 
 -- vim.opt.includeexpr = [[substitute(v:fname, '^file://\(.*\)#L\(\d\+\)', '\1', '')]]
 
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = "*",
+	callback = function(event)
+		local buf = event.buf
+
+		-- hackery to overload lsp to also do stuff when no lsp and man page
+		local function lsp_map(keys, func, desc)
+			vim.keymap.set("n", keys, func, { buffer = buf, desc = "LSP: " .. desc })
+		end
+
+		lsp_map("gd", function(...)
+			if vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()):find "man://" then return vim.api.nvim_command ":ManGD" end
+			return require("telescope.builtin").lsp_definitions(...)
+		end, "[G]oto [D]efinition")
+
+		vim.api.nvim_buf_create_user_command(buf, "ManGD", function()
+			local buf_name = vim.api.nvim_buf_get_name(buf)
+			local man = "man://"
+			if buf_name:sub(1, man:len()) ~= man then return end
+			local cur_line = vim.api.nvim_get_current_line()
+			local cursor = vim.api.nvim_win_get_cursor(0)
+			local start_section = cur_line:sub(1, cursor[2])
+			local word_begin = start_section:len() - (start_section:reverse():find " " or start_section:len() + 1) + 2
+			if word_begin == nil then return end
+			local page_container = cur_line:sub(word_begin)
+			local page_end = (page_container:find "[, ]" or page_container:len() + 1) - 1
+			local page = page_container:sub(1, page_end)
+			print(page)
+			vim.api.nvim_command(":Man " .. page)
+		end, {})
+	end,
+})
+
 nmap("n", "gf", function()
-	print "hi"
 	local cur_line = vim.api.nvim_get_current_line()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local FILE = "file://"
@@ -105,19 +137,15 @@ nmap("n", "gf", function()
 	local file_begin = start_section:find(FILE)
 	if file_begin == nil then return end
 	local path_container = cur_line:sub(file_begin)
-	print(path_container)
 	local path_end = path_container:find "[ )]"
 	local path = path_container:sub(1, path_end)
-	print(path)
 	local line
 	if path:find "#L" then
 		line = tonumber(path:sub(path:find "#L" + 2))
 		path = path:sub(1, path:find "#L" - 1)
 	end
 	path = path:sub(FILE:len() + 1)
-	print(path)
 	if line then
-		print(line)
 		vim.api.nvim_command(":edit +" .. line .. " " .. path)
 	else
 		vim.api.nvim_command(":edit " .. path)

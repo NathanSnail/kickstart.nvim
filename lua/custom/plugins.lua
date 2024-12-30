@@ -48,18 +48,19 @@ local colourschemes = {
 
 local scheme = "nightfly"
 
+vim.api.nvim_create_user_command("Paint", function()
+	local choice
+	repeat
+		choice = colourschemes[math.random(#colourschemes)]
+	until choice ~= scheme
+	scheme = choice
+	vim.api.nvim_command(":colo " .. choice)
+end, { bang = true })
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*" },
 	callback = function(event)
 		local buf = event.buf
-		vim.api.nvim_buf_create_user_command(buf, "Paint", function()
-			local choice
-			repeat
-				choice = colourschemes[math.random(#colourschemes)]
-			until choice ~= scheme
-			scheme = choice
-			vim.api.nvim_command(":colo " .. choice)
-		end, { bang = true })
 		vim.api.nvim_buf_create_user_command(buf, "Noiter", function()
 			local path = vim.api.nvim_buf_get_name(buf)
 			for x in path:gmatch "/mods/.*" do
