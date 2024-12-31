@@ -63,11 +63,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 		local buf = event.buf
 		vim.api.nvim_buf_create_user_command(buf, "Noiter", function()
 			local path = vim.api.nvim_buf_get_name(buf)
-			for x in path:gmatch "/mods/.*" do
+			for x in path:gmatch("/mods/.*") do
 				vim.fn.setreg("+", x:sub(2))
 				return
 			end
-			for x in path:gmatch "/data/.*" do
+			for x in path:gmatch("/data/.*") do
 				vim.fn.setreg("+", x:sub(2))
 				return
 			end
@@ -79,33 +79,38 @@ local ret = {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
 
-	file "lewis6991/gitsigns.nvim",
-	file "nvim-telescope/telescope.nvim",
-	file "neovim/nvim-lspconfig",
+	file("lewis6991/gitsigns.nvim"),
+	file("nvim-telescope/telescope.nvim"),
+	file("neovim/nvim-lspconfig"),
 
-	file "stevearc/conform.nvim",
-	file "Saecki/crates.nvim",
+	file("stevearc/conform.nvim"),
+	file("Saecki/crates.nvim"),
 
-	file "hrsh7th/nvim-cmp",
+	file("hrsh7th/nvim-cmp"),
 
 	-- Highlight todo, notes, etc in comments
-	{ "folke/todo-comments.nvim", event = "VimEnter", dependencies = { "nvim-lua/plenary.nvim" }, opts = {} },
+	{
+		"folke/todo-comments.nvim",
+		event = "VimEnter",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 	{
 		"noita-modman",
 		dir = "~/Documents/code/noita-modman",
 		config = function()
-			require("noita-modman").setup "/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml"
+			require("noita-modman").setup("/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml")
 		end,
 	},
 
-	file "echasnovski/mini.nvim",
+	file("echasnovski/mini.nvim"),
 
-	file "nvim-treesitter/nvim-treesitter",
-	file "bluz71/vim-nightfly-colors",
+	file("nvim-treesitter/nvim-treesitter"),
+	file("bluz71/vim-nightfly-colors"),
 	-- file "nvim-tree/nvim-tree.lua",
-	file "stevearc/oil.nvim",
+	file("stevearc/oil.nvim"),
 	{ "RaafatTurki/hex.nvim" },
-	file "ThePrimeagen/harpoon",
+	file("ThePrimeagen/harpoon"),
 	-- require 'kickstart.plugins.debug',
 	{ "tikhomirov/vim-glsl" },
 	{ "kaarmu/typst.vim", ft = "typst", lazy = false },

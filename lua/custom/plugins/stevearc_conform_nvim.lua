@@ -4,7 +4,7 @@ return {
 			-- Customize or remove this keymap to your liking
 			"<leader>ff",
 			function()
-				require("conform").format { async = true, lsp_fallback = true }
+				require("conform").format({ async = true, lsp_fallback = true })
 			end,
 			mode = "",
 			desc = "[F]ormat [F]ile",
@@ -18,7 +18,7 @@ return {
 					--local scanner = vim.loop.fs_scandir(path)
 					local fs = vim.uv.fs_scandir(path)
 					if fs == nil then
-						print "fs nil!"
+						print("fs nil!")
 						return
 					end
 					repeat

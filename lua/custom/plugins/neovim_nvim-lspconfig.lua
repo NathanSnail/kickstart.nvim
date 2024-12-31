@@ -33,20 +33,36 @@ return {
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+				map(
+					"gI",
+					require("telescope.builtin").lsp_implementations,
+					"[G]oto [I]mplementation"
+				)
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
 				--  the definition of its *type*, not where it was *defined*.
-				map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+				map(
+					"<leader>D",
+					require("telescope.builtin").lsp_type_definitions,
+					"Type [D]efinition"
+				)
 
 				-- Fuzzy find all the symbols in your current document.
 				--  Symbols are things like variables, functions, types, etc.
-				map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+				map(
+					"<leader>ds",
+					require("telescope.builtin").lsp_document_symbols,
+					"[D]ocument [S]ymbols"
+				)
 
 				-- Fuzzy find all the symbols in your current workspace
 				--  Similar to document symbols, except searches over your whole project.
-				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
+				map(
+					"<leader>ws",
+					require("telescope.builtin").lsp_dynamic_workspace_symbols,
+					"[W]orkspace [S]ymbols"
+				)
 
 				-- Rename the variable under your cursor
 				--  Most Language Servers support renaming across files, etc.
@@ -123,7 +139,11 @@ return {
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
+		capabilities = vim.tbl_deep_extend(
+			"force",
+			capabilities,
+			require("cmp_nvim_lsp").default_capabilities()
+		)
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -140,10 +160,12 @@ return {
 			lemminx = {
 				settings = {
 					xml = {
-						fileAssociations = { {
-							systemId = "file:///home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
-							pattern = "*",
-						} },
+						fileAssociations = {
+							{
+								systemId = "file:///home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
+								pattern = "*",
+							},
+						},
 					},
 				},
 			},
@@ -153,8 +175,9 @@ return {
 			glsl_analyzer = {},
 			gopls = {
 				root_dir = function(fname)
-					local util = require "lspconfig.util"
-					return util.root_pattern "go.work"(fname) or util.root_pattern("go.mod", ".git")(fname)
+					local util = require("lspconfig.util")
+					return util.root_pattern("go.work")(fname)
+						or util.root_pattern("go.mod", ".git")(fname)
 				end,
 			},
 			matlab_ls = {
@@ -166,9 +189,9 @@ return {
 				},
 				root_dir = function(fname)
 					return require("lspconfig.util").find_git_ancestor(fname)
-						or require("lspconfig.util").root_pattern "compile_commands.json"(fname)
-						or require("lspconfig.util").root_pattern "Makefile"(fname)
-						or require("lspconfig.util").root_pattern "xmake.lua"(fname)
+						or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
+						or require("lspconfig.util").root_pattern("Makefile")(fname)
+						or require("lspconfig.util").root_pattern("xmake.lua")(fname)
 				end,
 				single_file_support = true,
 			},
@@ -225,19 +248,20 @@ return {
 			"rust_analyzer", -- rust lsp
 			"gopls",
 		})
-		require("mason-tool-installer").setup { ensure_installed = ensure_installed }
+		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-		require("mason-lspconfig").setup {
+		require("mason-lspconfig").setup({
 			handlers = {
 				function(server_name)
 					local server = servers[server_name] or {}
 					-- This handles overriding only values explicitly passed
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
-					server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+					server.capabilities =
+						vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 					require("lspconfig")[server_name].setup(server)
 				end,
 			},
-		}
+		})
 	end,
 }

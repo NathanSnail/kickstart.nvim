@@ -76,8 +76,11 @@ vim.opt.shiftwidth = 6
 vim.keymap.set("n", "<C-t>", ":10sp +term<CR>")
 vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
 --- NOTE: Luarocks feature
-package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?/init.lua;"
-package.path = package.path .. ";" .. vim.fn.expand "$HOME" .. "/.luarocks/share/lua/5.1/?.lua;"
+package.path = package.path
+	.. ";"
+	.. vim.fn.expand("$HOME")
+	.. "/.luarocks/share/lua/5.1/?/init.lua;"
+package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 --- TODO: figure out wrapping in text docs then using gj gk
 vim.opt.wrap = false
 local nmap = vim.keymap.set
@@ -107,7 +110,9 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 		end
 
 		lsp_map("gd", function(...)
-			if vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()):find "man://" then return vim.api.nvim_command ":ManGD" end
+			if vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf()):find("man://") then
+				return vim.api.nvim_command(":ManGD")
+			end
 			return require("telescope.builtin").lsp_definitions(...)
 		end, "[G]oto [D]efinition")
 
@@ -118,10 +123,12 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 			local cur_line = vim.api.nvim_get_current_line()
 			local cursor = vim.api.nvim_win_get_cursor(0)
 			local start_section = cur_line:sub(1, cursor[2])
-			local word_begin = start_section:len() - (start_section:reverse():find " " or start_section:len() + 1) + 2
+			local word_begin = start_section:len()
+				- (start_section:reverse():find(" ") or start_section:len() + 1)
+				+ 2
 			if word_begin == nil then return end
 			local page_container = cur_line:sub(word_begin)
-			local page_end = (page_container:find "[, ]" or page_container:len() + 1) - 1
+			local page_end = (page_container:find("[, ]") or page_container:len() + 1) - 1
 			local page = page_container:sub(1, page_end)
 			print(page)
 			vim.api.nvim_command(":Man " .. page)
@@ -137,12 +144,12 @@ nmap("n", "gf", function()
 	local file_begin = start_section:find(FILE)
 	if file_begin == nil then return end
 	local path_container = cur_line:sub(file_begin)
-	local path_end = path_container:find "[ )]"
+	local path_end = path_container:find("[ )]")
 	local path = path_container:sub(1, path_end)
 	local line
-	if path:find "#L" then
-		line = tonumber(path:sub(path:find "#L" + 2))
-		path = path:sub(1, path:find "#L" - 1)
+	if path:find("#L") then
+		line = tonumber(path:sub(path:find("#L") + 2))
+		path = path:sub(1, path:find("#L") - 1)
 	end
 	path = path:sub(FILE:len() + 1)
 	if line then
@@ -156,10 +163,25 @@ vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
 -- Diagnostic keymaps
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set(
+	"n",
+	"[d",
+	vim.diagnostic.goto_prev,
+	{ desc = "Go to previous [D]iagnostic message" }
+)
 vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
-vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set(
+	"n",
+	"<leader>e",
+	vim.diagnostic.open_float,
+	{ desc = "Show diagnostic [E]rror messages" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>q",
+	vim.diagnostic.setloclist,
+	{ desc = "Open diagnostic [Q]uickfix list" }
+)
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -200,10 +222,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --	See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	vim.fn.system { "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath }
+	vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -214,6 +236,6 @@ vim.opt.rtp:prepend(lazypath)
 --	:Lazy update
 --
 -- NOTE: Here is where you install your plugins.
-require("lazy").setup(require "lua/custom/plugins")
+require("lazy").setup(require("lua/custom/plugins"))
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=6 sts=0 sw=0 noexpandtab
