@@ -15,7 +15,6 @@ function camp() {
 	git push
 }
 alias t='tree -L 2'
-alias cat=bat
 alias wina='sudo lxc console win11 --type=vga'
 alias wins='sudo lxc start win11 --console=vga'
 alias wink='sudo lxc stop win11'
