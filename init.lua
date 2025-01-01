@@ -75,6 +75,7 @@ vim.opt.shiftwidth = 6
 --vim.keymap.set("n", "<C-t>", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<C-t>", ":10sp +term<CR>")
 vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
+vim.keymap.set("n", "<CA-u>", ":UndotreeToggle<CR>")
 --- NOTE: Luarocks feature
 package.path = package.path
 	.. ";"
