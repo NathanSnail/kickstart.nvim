@@ -21,6 +21,7 @@ return {
 		"hrsh7th/cmp-path",
 		"hrsh7th/cmp-buffer",
 		"hrsh7th/cmp-cmdline",
+		"hrsh7th/cmp-nvim-lsp-signature-help",
 		--TODO: port this plugin!
 		--"NathanSnail/noita_nvim",
 
@@ -91,7 +92,8 @@ return {
 				{ name = "luasnip" },
 				{ name = "path" },
 				{ name = "buffer" },
-				{ name = "noita" },
+				-- { name = "noita" },
+				{ name = "nvim_lsp_signature_help" },
 			},
 		})
 	end,
