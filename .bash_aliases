@@ -53,6 +53,9 @@ alias yy='xclip -sel clip'
 alias p='xclip -o'
 alias what='echo $?'
 alias matlab='/home/nathan/MATLAB/R2024a/bin/matlab'
+cgr() {
+	convert $1 -colorspace RGB -format %c -depth 8 histogram:info:- | rg $2
+}
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
