@@ -155,6 +155,7 @@ return {
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--		For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
 		local servers = {
+			zls = { settings = { enable_build_on_save = true } },
 			clangd = {},
 			pyright = {},
 			lemminx = {
@@ -247,6 +248,7 @@ return {
 			"glsl_analyzer", -- glsl lsp
 			"rust_analyzer", -- rust lsp
 			"gopls",
+			"zls",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

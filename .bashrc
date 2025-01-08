@@ -120,3 +120,19 @@ fi
 . "$HOME/.cargo/env"
 
 [ -f "/home/nathan/.ghcup/env" ] && . "/home/nathan/.ghcup/env" # ghcup-env
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/tmp/_MEIqtWMfo/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/tmp/_MEIqtWMfo/etc/profile.d/conda.sh" ]; then
+        . "/tmp/_MEIqtWMfo/etc/profile.d/conda.sh"
+    else
+        export PATH="/tmp/_MEIqtWMfo/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
