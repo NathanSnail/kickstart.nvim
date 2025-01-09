@@ -137,6 +137,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
+local function exec(cmd)
+	print(cmd)
+	vim.api.nvim_command(cmd)
+end
+
 nmap("n", "gf", function()
 	local cur_line = vim.api.nvim_get_current_line()
 	local cursor = vim.api.nvim_win_get_cursor(0)
@@ -146,17 +151,19 @@ nmap("n", "gf", function()
 	if file_begin == nil then return end
 	local path_container = cur_line:sub(file_begin)
 	local path_end = path_container:find("[ )]")
-	local path = path_container:sub(1, path_end)
+	local path = path_container:sub(1, path_end - 1)
 	local line
 	if path:find("#L") then
-		line = tonumber(path:sub(path:find("#L") + 2))
+		local line_str = path:sub(path:find("#L") + 2)
+		line = tonumber(line_str)
 		path = path:sub(1, path:find("#L") - 1)
 	end
 	path = path:sub(FILE:len() + 1)
+	print(path, line)
 	if line then
-		vim.api.nvim_command(":edit +" .. line .. " " .. path)
+		exec(":edit +" .. line .. " " .. path)
 	else
-		vim.api.nvim_command(":edit " .. path)
+		exec(":edit " .. path)
 	end
 end, { noremap = true, silent = true })
 
