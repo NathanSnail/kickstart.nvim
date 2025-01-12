@@ -163,8 +163,8 @@ return {
 					xml = {
 						fileAssociations = {
 							{
-								systemId = "file:///home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
-								pattern = "*",
+								systemId = "/home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
+								pattern = "**/*.xml",
 							},
 						},
 					},

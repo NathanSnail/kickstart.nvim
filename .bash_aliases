@@ -54,7 +54,7 @@ alias p='xclip -o'
 alias what='echo $?'
 alias matlab='/home/nathan/MATLAB/R2024a/bin/matlab'
 cgr() {
-	convert $1 -colorspace RGB -format %c -depth 8 histogram:info:- | rg $2
+	convert $1 -format %c -depth 8 histogram:info:- | rg -i $2
 }
 
 # noita stuff
