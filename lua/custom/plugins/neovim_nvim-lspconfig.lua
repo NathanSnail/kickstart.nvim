@@ -74,45 +74,14 @@ return {
 
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
-				local timer_counter = 0
-				local timer = nil -- vim.uv.new_timer()
-				--- TODO: I can't figure this out so i'm just leaving it here
-				local is_hovering = false
-				if timer ~= nil then
-					vim.api.nvim_create_autocmd({ "CursorMoved" }, {
-						buffer = event.buf,
-						callback = function()
-							is_hovering = false
-							timer_counter = timer_counter + 1
-							local timer_copy = timer_counter
-							timer:start(
-								1000, -- if i stop typing for a bit i need hints
-								0,
-								vim.schedule_wrap(function()
-									if vim.api.nvim_get_mode().mode ~= "n" then return end
-									if timer_copy == timer_counter and not is_hovering then
-										vim.lsp.buf.hover()
-										is_hovering = true
-									end
-								end)
-							)
-						end,
-					})
-				else
-					-- print "TIMER FAILED!!"
-				end
-				map("<A-f>", function()
-					vim.lsp.buf.hover()
-					is_hovering = true
-				end, "[F]ind Documentation")
+				map("<A-f>", vim.lsp.buf.hover, "[F]ind Documentation")
+				map("<A-i>", function()
+					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+				end, "[I]nlay Hints")
 
 				-- WARN: This is not Goto Definition, this is Goto Declaration.
 				--  For example, in C this would take you to the header
 				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-				map("gl", function()
-					vim.lsp.inlay_hint.enable(nil, not vim.lsp.inlay_hint.is_enabled(nil))
-				end, "Show In[l]ay")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.

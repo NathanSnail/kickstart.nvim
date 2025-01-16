@@ -145,7 +145,7 @@ end
 nmap("n", "gf", function()
 	local cur_line = vim.api.nvim_get_current_line()
 	local cursor = vim.api.nvim_win_get_cursor(0)
-	local FILE = "file://"
+	local FILE = "file:"
 	local start_section = cur_line:sub(1, cursor[2] + FILE:len())
 	local file_begin = start_section:find(FILE)
 	if file_begin == nil then return end
@@ -160,6 +160,7 @@ nmap("n", "gf", function()
 	end
 	path = path:sub(FILE:len() + 1)
 	print(path, line)
+	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w><C-j>", true, true, true), "n", false)
 	if line then
 		exec(":edit +" .. line .. " " .. path)
 	else
