@@ -28,6 +28,7 @@ local themes = {
 	"comfysage/evergarden",
 	"sainnhe/edge",
 	"Shatur/neovim-ayu",
+	"rjshkhr/shadow.nvim",
 }
 
 local colourschemes = {
@@ -44,6 +45,7 @@ local colourschemes = {
 	"carbonfox",
 	"ayu-dark",
 	"ayu-mirage",
+	"shadow",
 }
 
 local scheme = "nightfly"
@@ -99,7 +101,9 @@ local ret = {
 		"noita-modman",
 		dir = "~/Documents/code/noita-modman",
 		config = function()
-			require("noita-modman").setup("/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml")
+			require("noita-modman").setup(
+				"/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml"
+			)
 		end,
 	},
 
