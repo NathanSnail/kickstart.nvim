@@ -180,6 +180,10 @@ return {
 							library = {
 								"${3rd}/luv/library",
 								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
+								"~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/builtin.lua",
+								"~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/types.lua",
+								"~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/unsafe_api.lua",
+								"~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/api.lua",
 								"~/.luarocks/",
 								--unpack(vim.api.nvim_get_runtime_file("", true)),
 							},
