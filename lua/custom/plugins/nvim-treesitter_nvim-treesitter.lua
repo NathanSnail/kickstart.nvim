@@ -21,7 +21,7 @@ return {
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
-			highlight = { enable = true, disable = { "xml", "xsd" } },
+			highlight = { enable = true, disable = { "xml", "xsd", "csv" } },
 			indent = { enable = true },
 		})
 
