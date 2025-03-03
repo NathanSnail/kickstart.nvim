@@ -18,6 +18,7 @@ return {
 				"toml",
 				"python",
 				"go",
+				"java",
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,

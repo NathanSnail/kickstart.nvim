@@ -220,6 +220,9 @@ return {
 			"rust_analyzer", -- rust lsp
 			"gopls",
 			"zls",
+			"jdtls",
+			"java-debug-adapter",
+			"java-test",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
