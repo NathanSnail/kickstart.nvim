@@ -150,7 +150,7 @@ local ret = {
 		"cordx56/rustowl",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
-			require("lspconfig").rustowl.setup({ trigger = { hover = true } })
+			require("lspconfig").rustowl.setup({ trigger = { hover = false } })
 		end,
 	},
 	file("mfussenegger/nvim-jdtls"),
