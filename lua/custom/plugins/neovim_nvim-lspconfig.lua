@@ -32,7 +32,7 @@ return {
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 
 				-- rustowl thing
-				map("<leader>ro", require("rustowl").rustowl_cursor, "[R]ust [O]wl")
+				-- map("<leader>ro", require("rustowl").rustowl_cursor, "[R]ust [O]wl")
 
 				-- Jump to the implementation of the word under your cursor.
 				--  Useful when your language has ways of declaring types without an actual implementation.

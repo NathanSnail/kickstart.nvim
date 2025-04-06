@@ -146,13 +146,13 @@ local ret = {
 	},
 	"lambdalisue/suda.vim",
 	"mbbill/undotree",
-	{
+	--[[{
 		"cordx56/rustowl",
 		dependencies = { "neovim/nvim-lspconfig" },
 		config = function()
-			require("lspconfig").rustowl.setup({ trigger = { hover = false } })
+			require("lspconfig").rustowl.setup({ trigger = { hover = true } })
 		end,
-	},
+	},]]
 	file("mfussenegger/nvim-jdtls"),
 	-- TODO: make this work
 	-- "DariusCorvus/tree-sitter-language-injection.nvim",
