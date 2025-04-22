@@ -29,6 +29,7 @@ local themes = {
 	"sainnhe/edge",
 	"Shatur/neovim-ayu",
 	"rjshkhr/shadow.nvim",
+	"bluz71/vim-moonfly-colors",
 }
 
 local colourschemes = {
@@ -46,6 +47,7 @@ local colourschemes = {
 	"ayu-dark",
 	"ayu-mirage",
 	"shadow",
+	"moonfly",
 }
 
 local scheme = "nightfly"
