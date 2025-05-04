@@ -160,7 +160,11 @@ nmap("n", "gf", function()
 	end
 	path = path:sub(FILE:len() + 1)
 	print(path, line)
-	vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-w><C-j>", true, true, true), "n", false)
+	vim.api.nvim_feedkeys(
+		vim.api.nvim_replace_termcodes("<C-w><C-j>", true, true, true),
+		"n",
+		false
+	)
 	if line then
 		exec(":edit +" .. line .. " " .. path)
 	else
@@ -191,6 +195,12 @@ vim.keymap.set(
 	vim.diagnostic.setloclist,
 	{ desc = "Open diagnostic [Q]uickfix list" }
 )
+
+vim.filetype.add({
+	extension = {
+		hexpat = "hexpat",
+	},
+})
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which

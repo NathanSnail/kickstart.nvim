@@ -1,0 +1,1 @@
+/home/nathan/Documents/code/tree-sitter-hexpat/queries/highlights.scm

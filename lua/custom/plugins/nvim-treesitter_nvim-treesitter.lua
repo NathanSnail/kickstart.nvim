@@ -33,4 +33,20 @@ return {
 		--	- Show your current context: https://github.com/nvim-treesitter/nvim-treesitter-context
 		--	- Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
 	end,
+	opts = function(_, opts)
+		local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+
+		opts.ensure_installed = opts.ensure_installed or {}
+		table.insert(opts.ensure_installed, "hexpat")
+
+		parser_config.hexpat = {
+			install_info = {
+				url = "/home/nathan/Documents/code/tree-sitter-hexpat",
+				files = { "src/parser.c" },
+				generate_requires_npm = false,
+				requires_generate_from_grammar = false,
+			},
+			filetype = "hexpat",
+		}
+	end,
 }

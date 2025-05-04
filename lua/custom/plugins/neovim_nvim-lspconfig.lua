@@ -226,6 +226,7 @@ return {
 			"jdtls",
 			"java-debug-adapter",
 			"java-test",
+			"cmake-language-server",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
