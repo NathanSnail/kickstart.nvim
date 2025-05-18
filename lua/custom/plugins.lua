@@ -165,6 +165,12 @@ local ret = {
 		dependencies = { "MunifTanjim/nui.nvim" },
 		opts = {
 			disable_mouse = false, -- im a scrolling addict
+			disabled_keys = {
+				["<Up>"] = { "" },
+				["<Down>"] = { "" },
+				["<Left>"] = { "" },
+				["<Right>"] = { "" },
+			},
 		},
 	},
 }
