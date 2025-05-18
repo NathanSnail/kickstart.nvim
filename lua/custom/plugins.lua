@@ -159,6 +159,14 @@ local ret = {
 	-- TODO: make this work
 	-- "DariusCorvus/tree-sitter-language-injection.nvim",
 	require("lua/kickstart/plugins/debug"),
+	{
+		"m4xshen/hardtime.nvim",
+		lazy = false,
+		dependencies = { "MunifTanjim/nui.nvim" },
+		opts = {
+			disable_mouse = false, -- im a scrolling addict
+		},
+	},
 }
 
 for _, v in ipairs(themes) do
