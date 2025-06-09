@@ -173,6 +173,14 @@ local ret = {
 			},
 		},
 	},
+	{
+		"cshuaimin/ssr.nvim",
+		config = function()
+			vim.keymap.set("n", "<leader>ssr", function()
+				require("ssr").open()
+			end)
+		end,
+	},
 }
 
 for _, v in ipairs(themes) do
