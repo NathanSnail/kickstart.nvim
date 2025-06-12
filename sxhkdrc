@@ -94,6 +94,9 @@ super + {o,i}
 	bspc node {older,newer} -f; \
 	bspc wm -h on
 
+super + shift + i
+	~/.config/bspwm/winhide.sh
+
 # focus or send to the given desktop
 super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}' --follow
