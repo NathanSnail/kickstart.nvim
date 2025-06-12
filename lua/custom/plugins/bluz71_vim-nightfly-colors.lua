@@ -16,7 +16,7 @@ local function colourise()
 		lavender = "#ADBBF4", -- fields
 		blue = "#75AEFF", -- funcs
 		violet = "#CA9BEA", -- keywords
-		regal_blue = "#212E38", -- lsp same colour
+		regal_blue = "#0D2538", -- lsp same colour
 	})
 	if debugging then vim.cmd("colorscheme default") end
 	vim.cmd("colorscheme nightfly")
