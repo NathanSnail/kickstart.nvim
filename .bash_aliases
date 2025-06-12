@@ -8,7 +8,7 @@ alias vim=nvim
 alias fv='fd && e'
 
 # general command line
-alias ga='git add *'
+alias ga='git add .'
 function camp() {
 	ga
 	git commit -am "$1"
@@ -57,6 +57,7 @@ cgr() {
 	convert $1 -format %c -depth 8 histogram:info:- | rg -i $2
 }
 alias dsc='{printf "\`\`\`ansi\n$ "; command=$(fc -ln -1); echo $command | bat --language=sh -f -p --theme base16; unbuffer bash -c "$command"; printf "\`\`\`"}'
+alias gs='git status'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
