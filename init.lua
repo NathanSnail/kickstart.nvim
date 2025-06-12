@@ -100,6 +100,12 @@ nmap("n", "<C-S-j>", "<C-w>-")]]
 
 -- vim.opt.includeexpr = [[substitute(v:fname, '^file://\(.*\)#L\(\d\+\)', '\1', '')]]
 
+vim.api.nvim_create_user_command("MessagesToBuffer", function()
+	local lines = vim.api.nvim_exec("messages", true)
+	vim.cmd("new") -- or `vnew`, `tabnew`, etc.
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(lines, "\n"))
+end, {})
+
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = "*",
 	callback = function(event)
