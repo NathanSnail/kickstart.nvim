@@ -68,7 +68,8 @@ vim.opt.scrolloff = 15
 
 --- NOTE: Nathan changes
 
-vim.opt.cmdheight = 0 -- no extra line below status
+-- too annoying with macros and insert mode flicker
+-- vim.opt.cmdheight = 0 -- no extra line below status
 vim.opt.equalalways = false
 vim.opt.tabstop = 6
 vim.opt.shiftwidth = 6
