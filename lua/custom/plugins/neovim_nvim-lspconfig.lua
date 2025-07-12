@@ -6,41 +6,20 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
+		"saghen/blink.cmp",
 		{ "j-hui/fidget.nvim", opts = {} },
-		{ "folke/neodev.nvim", opts = {} },
 	},
 	config = function()
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
 			callback = function(event)
-				-- NOTE: Remember that lua is a real programming language, and as such it is possible
-				-- to define small helper and utility functions so you don't have to repeat yourself
-				-- many times.
-				--
-				-- In this case, we create a function that lets us more easily define mappings specific
-				-- for LSP related items. It sets the mode, buffer and description for us each time.
 				local map = function(keys, func, desc)
 					vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
 				end
 
-				-- Jump to the definition of the word under your cursor.
-				--  This is where a variable was first declared, or where a function is defined, etc.
-				--  To jump back, press <C-T>.
-				-- map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+				-- gd in init.lua for man pages
 
-				-- Find references for the word under your cursor.
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-
-				-- rustowl thing
-				-- map("<leader>ro", require("rustowl").rustowl_cursor, "[R]ust [O]wl")
-
-				-- Jump to the implementation of the word under your cursor.
-				--  Useful when your language has ways of declaring types without an actual implementation.
-				map(
-					"gI",
-					require("telescope.builtin").lsp_implementations,
-					"[G]oto [I]mplementation"
-				)
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
@@ -49,22 +28,6 @@ return {
 					"<leader>D",
 					require("telescope.builtin").lsp_type_definitions,
 					"Type [D]efinition"
-				)
-
-				-- Fuzzy find all the symbols in your current document.
-				--  Symbols are things like variables, functions, types, etc.
-				map(
-					"<leader>ds",
-					require("telescope.builtin").lsp_document_symbols,
-					"[D]ocument [S]ymbols"
-				)
-
-				-- Fuzzy find all the symbols in your current workspace
-				--  Similar to document symbols, except searches over your whole project.
-				map(
-					"<leader>ws",
-					require("telescope.builtin").lsp_dynamic_workspace_symbols,
-					"[W]orkspace [S]ymbols"
 				)
 
 				-- Rename the variable under your cursor
@@ -81,10 +44,6 @@ return {
 				map("<A-i>", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "[I]nlay Hints")
-
-				-- WARN: This is not Goto Definition, this is Goto Declaration.
-				--  For example, in C this would take you to the header
-				map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -110,12 +69,7 @@ return {
 		--  By default, Neovim doesn't support everything that is in the LSP Specification.
 		--  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities = vim.tbl_deep_extend(
-			"force",
-			capabilities,
-			require("cmp_nvim_lsp").default_capabilities()
-		)
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -135,7 +89,7 @@ return {
 					xml = {
 						fileAssociations = {
 							{
-								systemId = "/home/nathan/Documents/code/noita_xml_dtd/merged.xsd",
+								systemId = "/home/nathan/Documents/code/noita_xml_dtd/out/merged.xsd",
 								pattern = "**/*.xml",
 							},
 						},
@@ -155,7 +109,7 @@ return {
 			},
 			matlab_ls = {
 				matlab = {
-					capabilities = require("cmp_nvim_lsp").default_capabilities(),
+					capabilities = require("blink.cmp").get_lsp_capabilities(),
 					indexWorkspace = true,
 					--installPath = "/home/nathan/MATLAB/R2024a/",
 					matlabConnectionTiming = "onStart",

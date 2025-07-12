@@ -15,8 +15,6 @@ local function force(name)
 	return { name, opts = {} }
 end
 
-vim.g.rust_recommended_style = 0
-
 local themes = {
 	"folke/tokyonight.nvim",
 	"EdenEast/nightfox.nvim",
@@ -83,14 +81,24 @@ local ret = {
 	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
 	-- NOTE: don't use spaces ever.
 
+	{
+		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
+		-- used for completion, annotations and signatures of Neovim apis
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				-- Load luvit types when the `vim.uv` word is found
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
 	file("lewis6991/gitsigns.nvim"),
 	file("nvim-telescope/telescope.nvim"),
 	file("neovim/nvim-lspconfig"),
+	file("saghen/blink.cmp"),
 
 	file("stevearc/conform.nvim"),
-	file("Saecki/crates.nvim"),
-
-	file("hrsh7th/nvim-cmp"),
 
 	-- Highlight todo, notes, etc in comments
 	{
@@ -99,26 +107,14 @@ local ret = {
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {},
 	},
-	{
-		"noita-modman",
-		dir = "~/Documents/code/noita-modman",
-		config = function()
-			require("noita-modman").setup(
-				"/home/nathan/.local/share/Steam/steamapps/compatdata/881100/pfx/drive_c/users/steamuser/AppData/LocalLow/Nolla_Games_Noita/save00/mod_config.xml"
-			)
-		end,
-	},
 
 	file("echasnovski/mini.nvim"),
 
 	file("nvim-treesitter/nvim-treesitter"),
 	file("bluz71/vim-nightfly-colors"),
-	-- file "nvim-tree/nvim-tree.lua",
 	file("stevearc/oil.nvim"),
-	{ "RaafatTurki/hex.nvim" },
+	"RaafatTurki/hex.nvim",
 	file("ThePrimeagen/harpoon"),
-	-- require 'kickstart.plugins.debug',
-	{ "tikhomirov/vim-glsl" },
 	{ "kaarmu/typst.vim", ft = "typst", lazy = false },
 	{
 		"chomosuke/typst-preview.nvim",
@@ -148,17 +144,14 @@ local ret = {
 	},
 	"lambdalisue/suda.vim",
 	"mbbill/undotree",
-	--[[{
-		"cordx56/rustowl",
-		dependencies = { "neovim/nvim-lspconfig" },
-		config = function()
-			require("lspconfig").rustowl.setup({ trigger = { hover = true } })
-		end,
-	},]]
+
 	file("mfussenegger/nvim-jdtls"),
+
 	-- TODO: make this work
 	-- "DariusCorvus/tree-sitter-language-injection.nvim",
+
 	require("lua/kickstart/plugins/debug"),
+
 	{
 		"m4xshen/hardtime.nvim",
 		lazy = false,
