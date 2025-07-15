@@ -31,6 +31,7 @@ return {
 				"black",
 				-- "unexpand", it's just too hard to go against the python formatter, even though it's clearly wrong
 			},
+			json = { "jq" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--
@@ -48,6 +49,10 @@ return {
 			},
 			clang_format = {
 				args = { "--style={UseTab: Always, IndentWidth: 6, TabWidth: 6}" },
+			},
+			jq = {
+				command = "jq",
+				args = { "--tab" },
 			},
 		},
 	},
