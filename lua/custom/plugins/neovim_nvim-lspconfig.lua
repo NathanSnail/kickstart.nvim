@@ -20,6 +20,7 @@ return {
 				-- gd in init.lua for man pages
 
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplemetations")
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
