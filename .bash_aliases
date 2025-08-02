@@ -58,6 +58,7 @@ cgr() {
 }
 alias dsc='{printf "\`\`\`ansi\n$ "; command=$(fc -ln -1); echo $command | bat --language=sh -f -p --theme base16; unbuffer bash -i -c "$command"; printf "\`\`\`"}'
 alias gs='git status'
+alias snooze='xset dpms force off'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
@@ -73,6 +74,7 @@ function wmod() {
 	cd $(find . -maxdepth 2 | rg mod_id.txt | xargs -I {} sh -c 'rg -i $1 < {} > /dev/null && echo $(echo {} | sed "s/mod_id.txt//g")' -- "$1") &&
 	cat mod_id.txt
 }
+alias ltspice='wine ~/.wine/drive_c/Program\ Files/LTC/LTspiceXVII/XVIIx64.exe'
 
 # config editing
 alias evim='e ~/.config/nvim/init.lua'
