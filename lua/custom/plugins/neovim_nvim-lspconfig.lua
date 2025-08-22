@@ -138,7 +138,7 @@ return {
 							library = {
 								"${3rd}/luv/library",
 								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
-								"~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/",
+								-- "~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/",
 								"~/Documents/code/Noita-Dear-ImGui/imguidoc/imgui_definitions.lua",
 								"~/.luarocks/",
 								--unpack(vim.api.nvim_get_runtime_file("", true)),
@@ -146,6 +146,7 @@ return {
 						},
 						completion = {
 							callSnippet = "Replace",
+							autoRequire = true,
 						},
 					},
 				},

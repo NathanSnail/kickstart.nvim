@@ -13,7 +13,7 @@ configuration {
 }
 
 * {
-    font: "Jetbrains Mono 12";
+    font: "Symbols Nerd Font Mono 12, Jetbrains Mono 12";
     foreground: #ffffff;
     background-color: #282A2E;
     active-background: #ffa0ff;

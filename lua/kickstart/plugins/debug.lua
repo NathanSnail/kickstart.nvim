@@ -41,8 +41,43 @@ return {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				"delve",
 				"codelldb", -- Rust (via CodeLLDB)
+				"local-lua-debugger-vscode"
 			},
 		})
+
+		-- TODO: make this work
+		--[[
+		local lua_dap_path = "/home/nathan/Documents/code/local-lua-debugger-vscode/"
+
+		dap.adapters.lua = {
+			type = "executable",
+			command = "node",
+			args = {
+				lua_dap_path .. "extension/debugAdapter.js",
+			},
+			enrich_config = function(config, on_config)
+				if not config.extensionPath then
+					local c = vim.deepcopy(config)
+					c.cwd = vim.fn.getcwd()
+					c.extensionPath = lua_dap_path
+					on_config(c)
+				else
+					on_config(config)
+				end
+			end,
+		}
+
+		dap.configurations.lua = {
+			{
+				type = "lua",
+				request = "launch",
+				name = "Debug Lua script",
+				program = function()
+					return vim.fn.input("Path to script: ", vim.fn.getcwd() .. "/", "file")
+				end,
+			},
+		}
+		]]
 
 		-- Basic debugging keymaps, feel free to change to your liking!
 		vim.keymap.set("n", "<F5>", dap.continue, { desc = "Debug: Start/Continue" })

@@ -61,7 +61,7 @@ alias gs='git status'
 alias snooze='xset dpms force off'
 
 # noita stuff
-alias ghidra='~/Documents/ghidra/ghidra_11.1.1_PUBLIC/ghidraRun'
+alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
 alias data='cd ~/Documents/code/noitadata/data/'
 alias noita='z /home/nathan/.local/share/Steam/steamapps/common/Noita'
