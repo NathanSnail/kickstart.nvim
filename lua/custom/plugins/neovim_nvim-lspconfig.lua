@@ -20,7 +20,11 @@ return {
 				-- gd in init.lua for man pages
 
 				map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
-				map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplemetations")
+				map(
+					"gI",
+					require("telescope.builtin").lsp_implementations,
+					"[G]oto [I]mplemetations"
+				)
 
 				-- Jump to the type of the word under your cursor.
 				--  Useful when you're not sure what type a variable is and you want to see
@@ -72,9 +76,6 @@ return {
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
-		-- Enable the following language servers
-		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-		--
 		--  Add any additional override configuration in the following tables. Available keys are:
 		--  - cmd (table): Override the default command used to start the server
 		--  - filetypes (table): Override the default list of associated filetypes for the server
@@ -99,7 +100,7 @@ return {
 			},
 			-- python_lsp_server
 			rust_analyzer = {},
-			hls = {},
+			-- hls = {},
 			glsl_analyzer = {},
 			gopls = {
 				root_dir = function(fname)
@@ -133,14 +134,12 @@ return {
 						workspace = {
 							ignoreSubmodules = false,
 							checkThirdParty = false,
-							-- Tells lua_ls where to find all the Lua files that you have loaded
-							-- for your neovim configuration.
 							library = {
-								"${3rd}/luv/library",
+								-- "${3rd}/luv/library",
 								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
 								-- "~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/",
-								"~/Documents/code/Noita-Dear-ImGui/imguidoc/imgui_definitions.lua",
-								"~/.luarocks/",
+								-- "~/Documents/code/Noita-Dear-ImGui/imguidoc/imgui_definitions.lua",
+								-- "~/.luarocks/",
 								--unpack(vim.api.nvim_get_runtime_file("", true)),
 							},
 						},
@@ -153,16 +152,8 @@ return {
 			},
 		}
 
-		-- Ensure the servers and tools above are installed
-		--  To check the current status of installed tools and/or manually install
-		--  other tools, you can run
-		--	:Mason
-		--
-		--  You can press `g?` for help in this menu
 		require("mason").setup()
 
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
@@ -174,7 +165,7 @@ return {
 			"xmlformatter", -- xml format
 			"clang-format", -- c like formatter
 			"clangd", -- its c++ / c
-			"hls", -- haskell lsp
+			-- "hls", -- haskell lsp
 			"glsl_analyzer", -- glsl lsp
 			"rust_analyzer", -- rust lsp
 			"gopls",
