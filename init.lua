@@ -152,7 +152,7 @@ local function exec(cmd)
 	vim.api.nvim_command(cmd)
 end
 
-nmap("n", "gf", function()
+--[[nmap("n", "gf", function()
 	local cur_line = vim.api.nvim_get_current_line()
 	local cursor = vim.api.nvim_win_get_cursor(0)
 	local FILE = "file:"
@@ -180,7 +180,7 @@ nmap("n", "gf", function()
 	else
 		exec(":edit " .. path)
 	end
-end, { noremap = true, silent = true })
+end, { noremap = true, silent = true })]]
 
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
