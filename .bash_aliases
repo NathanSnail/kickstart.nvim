@@ -59,11 +59,13 @@ cgr() {
 alias dsc='{printf "\`\`\`ansi\n$ "; command=$(fc -ln -1); echo $command | bat --language=sh -f -p --theme base16; unbuffer bash -i -c "$command"; printf "\`\`\`"}'
 alias gs='git status'
 alias snooze='xset dpms force off'
+alias asg='ast-grep --pattern'
+alias ocr='~/Documents/code/kickstart.nvim/ocr.sh'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
-alias data='cd ~/Documents/code/noitadata/data/'
+alias data='cd ~/Documents/code/noitadata/'
 alias noita='z /home/nathan/.local/share/Steam/steamapps/common/Noita'
 alias fmods="mods && find . -maxdepth 1 -type d -exec sh -c '(cd {} && git fetch && git pull)' ';'"
 alias ecdoc='e ~/.local/share/Steam/steamapps/common/Noita/tools_modding/component_documentation.txt'
