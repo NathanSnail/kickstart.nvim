@@ -61,6 +61,9 @@ alias gs='git status'
 alias snooze='xset dpms force off'
 alias asg='ast-grep --pattern'
 alias ocr='~/Documents/code/kickstart.nvim/ocr.sh'
+tns() {
+	date --date=$1 "+%ss"
+}
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
