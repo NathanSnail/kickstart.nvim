@@ -105,7 +105,7 @@ local ret = {
 		"folke/todo-comments.nvim",
 		event = "VimEnter",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {},
+		opts = { highlight = { multiline_pattern = "^%-" } },
 	},
 
 	file("echasnovski/mini.nvim"),
