@@ -101,6 +101,7 @@ nmap("t", "<S-Bs>", "<Bs>")
 nmap("n", "<C-S-l>", "<C-w><Left>")
 nmap("n", "<C-S-k>", "<C-w>+")
 nmap("n", "<C-S-j>", "<C-w>-")]]
+vim.keymap.set("v", "<C-o>", ":norm ")
 
 -- vim.opt.includeexpr = [[substitute(v:fname, '^file://\(.*\)#L\(\d\+\)', '\1', '')]]
 
