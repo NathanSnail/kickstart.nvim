@@ -79,6 +79,18 @@ function wmod() {
 	cd $(find . -maxdepth 2 | rg mod_id.txt | xargs -I {} sh -c 'rg -i $1 < {} > /dev/null && echo $(echo {} | sed "s/mod_id.txt//g")' -- "$1") &&
 	cat mod_id.txt
 }
+function git_force_danger_hide_email() {
+	ORIGIN_URL=$(git remote -v | rg "^origin\s" | sed 's/origin\s*//' | sed 's/ (.*//' | head -n 1)
+	cd /tmp/
+	git clone $ORIGIN_URL repo
+	cd repo
+	git clone-branches
+	git filter-repo --mailmap ~/.mailmap
+	git remote add origin $ORIGIN_URL
+	git push --force --branches --prune
+	cd ..
+	rm -rf repo
+}
 alias ltspice='wine ~/.wine/drive_c/Program\ Files/LTC/LTspiceXVII/XVIIx64.exe'
 
 # config editing
