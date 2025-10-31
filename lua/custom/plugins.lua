@@ -150,8 +150,6 @@ local ret = {
 	-- TODO: make this work
 	-- "DariusCorvus/tree-sitter-language-injection.nvim",
 
-	require("lua/kickstart/plugins/debug"),
-
 	{
 		"m4xshen/hardtime.nvim",
 		lazy = false,

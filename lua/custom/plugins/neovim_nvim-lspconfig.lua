@@ -157,31 +157,26 @@ return {
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
 			"stylua", -- Used to format lua code
-			"pyright", -- LSP for python
-			-- "python-lsp-server",
 			"black", -- formatter
 			"isort", -- organize imports
 			"lemminx", -- xml lsp
 			"xmlformatter", -- xml format
 			"clang-format", -- c like formatter
 			"clangd", -- its c++ / c
-			-- "hls", -- haskell lsp
 			"glsl_analyzer", -- glsl lsp
 			"rust_analyzer", -- rust lsp
 			"gopls",
-			"zls",
-			"jdtls",
 			"java-debug-adapter",
 			"java-test",
 			"cmake-language-server",
 			"json-lsp",
+			"jdtls",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		for k, v in pairs(servers) do
-			vim.lsp.config[k] = v
+			vim.lsp.config(k, v)
+			vim.lsp.enable(k)
 		end
-
-		require("mason-lspconfig").setup({})
 	end,
 }
