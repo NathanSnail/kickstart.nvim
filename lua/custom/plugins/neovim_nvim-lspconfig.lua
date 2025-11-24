@@ -170,7 +170,6 @@ return {
 			"java-test",
 			"cmake-language-server",
 			"json-lsp",
-			"jdtls",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

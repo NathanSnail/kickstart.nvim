@@ -29,7 +29,7 @@ super + c
 	rofi -show window
 
 # make sxhkd reload its configuration files:
-super + Escape
+super + plus
 	pkill -USR1 -x sxhkd
 	sleep 5
 	sxhkd

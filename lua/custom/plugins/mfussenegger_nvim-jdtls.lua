@@ -19,6 +19,9 @@ return {
 					settings = {
 						java = {
 							-- Java-specific settings
+							symbols = {
+								includeSourceMethodDeclarations = true,
+							},
 						},
 					},
 					init_options = {
