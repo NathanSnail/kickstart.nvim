@@ -172,6 +172,10 @@ local ret = {
 			end)
 		end,
 	},
+	{
+		"mrcjkb/haskell-tools.nvim",
+		lazy = false, -- This plugin is already lazy
+	},
 }
 
 for _, v in ipairs(themes) do

@@ -67,6 +67,15 @@ return {
 						callback = vim.lsp.buf.clear_references,
 					})
 				end
+
+				local bufnr = event.buf
+				if client and client:supports_method("textDocument/codeLens") then
+					vim.lsp.codelens.refresh()
+					vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+						buffer = bufnr,
+						callback = vim.lsp.codelens.refresh,
+					})
+				end
 			end,
 		})
 
@@ -130,6 +139,7 @@ return {
 				-- capabilities = {},
 				settings = {
 					Lua = {
+						codeLens = { enable = true },
 						runtime = { version = "LuaJIT" },
 						workspace = {
 							ignoreSubmodules = false,
@@ -146,6 +156,16 @@ return {
 						completion = {
 							callSnippet = "Replace",
 							autoRequire = true,
+						},
+						hint = { enable = true },
+						diagnostics = {
+							neededFileStatus = {
+								["missing-local-export-doc"] = "Any",
+								["missing-global-doc"] = "Any",
+								["incomplete-signature-doc"] = "Any",
+								["no-unknown"] = "Any",
+								["global-element"] = "Any",
+							},
 						},
 					},
 				},
@@ -174,6 +194,7 @@ return {
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		for k, v in pairs(servers) do
+			k = k:gsub("%-", "_")
 			vim.lsp.config(k, v)
 			vim.lsp.enable(k)
 		end
