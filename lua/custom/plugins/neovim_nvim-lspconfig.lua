@@ -115,7 +115,7 @@ return {
 				root_dir = function(fname)
 					local util = require("lspconfig.util")
 					return util.root_pattern("go.work")(fname)
-						or util.root_pattern("go.mod", ".git")(fname)
+					    or util.root_pattern("go.mod", ".git")(fname)
 				end,
 			},
 			matlab_ls = {
@@ -127,9 +127,9 @@ return {
 				},
 				root_dir = function(fname)
 					return require("lspconfig.util").find_git_ancestor(fname)
-						or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
-						or require("lspconfig.util").root_pattern("Makefile")(fname)
-						or require("lspconfig.util").root_pattern("xmake.lua")(fname)
+					    or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
+					    or require("lspconfig.util").root_pattern("Makefile")(fname)
+					    or require("lspconfig.util").root_pattern("xmake.lua")(fname)
 				end,
 				single_file_support = true,
 			},
@@ -139,7 +139,10 @@ return {
 				-- capabilities = {},
 				settings = {
 					Lua = {
-						codeLens = { enable = true },
+						codeLens = {
+							enable = false,
+							--true -- this feature is too slow
+						},
 						runtime = { version = "LuaJIT" },
 						workspace = {
 							ignoreSubmodules = false,
@@ -160,11 +163,13 @@ return {
 						hint = { enable = true },
 						diagnostics = {
 							neededFileStatus = {
-								["missing-local-export-doc"] = "Any",
 								["missing-global-doc"] = "Any",
+								["missing-local-doc"] = "Any",
+								["missing-local-export-doc"] = "Any",
+								["missing-export-doc"] = "Any",
 								["incomplete-signature-doc"] = "Any",
 								["no-unknown"] = "Any",
-								["global-element"] = "Any",
+								-- ["global-element"] = "Any",
 							},
 						},
 					},
@@ -198,5 +203,7 @@ return {
 			vim.lsp.config(k, v)
 			vim.lsp.enable(k)
 		end
+
+		vim.lsp.set_log_level("warn")
 	end,
 }

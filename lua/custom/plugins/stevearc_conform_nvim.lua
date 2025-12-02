@@ -17,7 +17,10 @@ return {
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {
-			lua = { "stylua" },
+			lua = {
+				"luals",
+				-- "stylua"
+			},
 			rust = { "rustfmt" },
 			c = { "clang_format" },
 			cpp = { "clang_format" },
