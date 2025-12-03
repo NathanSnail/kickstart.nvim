@@ -169,6 +169,7 @@ return {
 								["missing-export-doc"] = "Any",
 								["incomplete-signature-doc"] = "Any",
 								["no-unknown"] = "Any",
+								["no-unknown-operations"] = "Any",
 								-- ["global-element"] = "Any",
 							},
 						},
