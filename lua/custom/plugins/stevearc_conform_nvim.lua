@@ -18,8 +18,8 @@ return {
 		},
 		formatters_by_ft = {
 			lua = {
-				"luals",
-				-- "stylua"
+				-- "luals",
+				"stylua"
 			},
 			rust = { "rustfmt" },
 			c = { "clang_format" },

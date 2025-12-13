@@ -42,6 +42,7 @@ return {
 				-- Execute a code action, usually your cursor needs to be on top of an error
 				-- or a suggestion from your LSP for this to activate.
 				map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
+				map("<leader>cl", vim.lsp.codelens.run, "[C]ode [L]ens")
 
 				-- Opens a popup that displays documentation about the word under your cursor
 				--  See `:help K` for why this keymap
@@ -49,6 +50,7 @@ return {
 				map("<A-i>", function()
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "[I]nlay Hints")
+
 
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
@@ -115,7 +117,7 @@ return {
 				root_dir = function(fname)
 					local util = require("lspconfig.util")
 					return util.root_pattern("go.work")(fname)
-					    or util.root_pattern("go.mod", ".git")(fname)
+						or util.root_pattern("go.mod", ".git")(fname)
 				end,
 			},
 			matlab_ls = {
@@ -127,9 +129,9 @@ return {
 				},
 				root_dir = function(fname)
 					return require("lspconfig.util").find_git_ancestor(fname)
-					    or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
-					    or require("lspconfig.util").root_pattern("Makefile")(fname)
-					    or require("lspconfig.util").root_pattern("xmake.lua")(fname)
+						or require("lspconfig.util").root_pattern("compile_commands.json")(fname)
+						or require("lspconfig.util").root_pattern("Makefile")(fname)
+						or require("lspconfig.util").root_pattern("xmake.lua")(fname)
 				end,
 				single_file_support = true,
 			},
@@ -171,12 +173,63 @@ return {
 								["no-unknown"] = "Any",
 								["no-unknown-operations"] = "Any",
 								-- ["global-element"] = "Any",
+								-- TODO: fix this setting
+								-- ["name-style-check"] = "Any",
+								-- ["spell-check"] = "Any",
 							},
+							groupFileStatus = {
+								ambiguity = "Any",
+								duplicate = "Any",
+								redefined = "Any",
+								["type-check"] = "Any",
+								strict = "Any",
+								unbalanced = "Any",
+								unused = "Any",
+								luadoc = "Any",
+								global = "Any",
+								codestyle = "Fallback",
+							},
+						},
+						nameStyle = {
+							config = {},
 						},
 					},
 				},
 			},
 		}
+
+		local lua_name_config = {
+			local_name_style = {
+				-- "snake_case",
+				{
+					type = "pattern",
+					param = "_(\\w+)",
+					["$1"] = "snake_case",
+				},
+				{
+					type = "pattern",
+					param = "_(\\w+)",
+					["$1"] = "pascal_case",
+				},
+				{ type = "ignore", param = { "M" } },
+			},
+			function_param_name_style = "pascal_case",
+			local_function_name_style = "snake_case",
+			global_variable_name_style = "pascal_case",
+			table_field_name_style = "snake_case",
+			module_name_style = { "snake_case", "pascal_case" },
+			class_name_style = "pascal_case",
+			const_variable_name_style = "upper_snake_case",
+		}
+		lua_name_config.local_name_style = "camel_case"
+		lua_name_config.local_name_style = {
+			["type"] = "pattern",
+			["param"] = "m_(w+)",
+			["$1"] = "camel_case",
+		}
+		lua_name_config.module_local_name_style = lua_name_config.local_name_style
+		lua_name_config = { local_name_style = "camel_case" }
+		servers.lua_ls.settings.Lua.nameStyle.config = lua_name_config
 
 		require("mason").setup()
 
