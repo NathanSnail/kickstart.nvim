@@ -19,7 +19,7 @@ return {
 		formatters_by_ft = {
 			lua = {
 				-- "luals",
-				"stylua"
+				"stylua",
 			},
 			rust = { "rustfmt" },
 			c = { "clang_format" },
@@ -35,6 +35,7 @@ return {
 				-- "unexpand", it's just too hard to go against the python formatter, even though it's clearly wrong
 			},
 			json = { "jq" },
+			javascript = { "prettier" },
 			-- Conform can also run multiple formatters sequentially
 			-- python = { "isort", "black" },
 			--

@@ -31,7 +31,6 @@ super + c
 # make sxhkd reload its configuration files:
 super + plus
 	pkill -USR1 -x sxhkd
-	sleep 5
 	sxhkd
 
 #

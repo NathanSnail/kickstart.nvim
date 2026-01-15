@@ -51,7 +51,6 @@ return {
 					vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
 				end, "[I]nlay Hints")
 
-
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
 				--	See `:help CursorHold` for information about when this is executed
@@ -196,6 +195,9 @@ return {
 					},
 				},
 			},
+			vtsls = {},
+			-- kotlin_lsp = {},
+			kotlin_language_server = {},
 		}
 
 		local lua_name_config = {
