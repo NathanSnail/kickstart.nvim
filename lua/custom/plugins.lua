@@ -176,6 +176,7 @@ local ret = {
 		"mrcjkb/haskell-tools.nvim",
 		lazy = false, -- This plugin is already lazy
 	},
+	"NathanSnail/qalc.nvim",
 }
 
 for _, v in ipairs(themes) do
