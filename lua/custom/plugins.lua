@@ -124,6 +124,7 @@ local ret = {
 		build = function()
 			require("typst-preview").update()
 		end,
+		opts = { open_cmd = "firefox %s" },
 	},
 	{
 		"f-person/git-blame.nvim",
