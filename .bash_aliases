@@ -28,9 +28,8 @@ alias chx='chmod +x' $1
 alias kbar='killall -q polybar'
 alias get='sudo nala install -y'
 alias asrc='apt search'
-alias home='xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DisplayPort-1-2 --mode 3840x2160 --right-of HDMI-0 & xrandr --output HDMI-0 --mode 1920x1080 --primary -r 144 --right-of DP-2 --output DP-0 --mode 3840x2160 --right-of HDMI-0'
-alias standard='home ; xrandr --output DP-2 --right-of DisplayPort-1-2 ; killall -q picom ; ~/.config/bspwm/bspwmrc ; kbar ; xrandr --output DisplayPort-2-2 --mode 3840x2160 --right-of HDMI-0 ; xrandr --output DP-2 --right-of DisplayPort-2-2 ; feh --bg-fill /home/nathan/Documents/bg.png ; picom --backend glx & disown'
-alias uni='bspc monitor DP-2 -d I II III IV V'
+alias home='xrandr --output HDMI-1-0 --mode 1920x1080 --primary -r 144 && xrandr --output DisplayPort-2 --mode 3840x2160 -r 60 --right-of HDMI-1-0 && xrandr --output eDP-1 --right-of DisplayPort-2 --brightness 0 && bspc monitor HDMI-1-0 -d PI PII PIII PIV PV && bspc monitor DisplayPort-2 -d SI SII SIII SIV SV && feh --bg-fill /home/nathan/Documents/bg.png ; killall -q picom ; kbar ; picom --backend glx & disown'
+alias uni='bspc monitor eDP-1 -d I II III IV V'
 alias hist='git log --graph --oneline --decorate'
 for_each_line() {
 	while IFS= read -r line; do
