@@ -70,6 +70,7 @@ click() {
 	xdotool windowactivate --sync $1 click 1
 	bspc node $OLD_FOCUS -f
 }
+alias clippy='RUSTFLAGS="-A dead_code" cargo clippy'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
