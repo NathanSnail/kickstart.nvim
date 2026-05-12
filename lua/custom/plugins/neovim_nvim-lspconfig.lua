@@ -198,6 +198,7 @@ return {
 			vtsls = {},
 			-- kotlin_lsp = {},
 			kotlin_language_server = {},
+			vhdl_ls = {},
 		}
 
 		local lua_name_config = {
@@ -251,6 +252,7 @@ return {
 			"java-test",
 			"cmake-language-server",
 			"json-lsp",
+			"rust_hdl",
 		})
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 

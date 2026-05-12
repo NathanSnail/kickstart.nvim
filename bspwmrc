@@ -5,8 +5,9 @@ XMODIFIERS=@im=ibus
 setxkbmap -option compose:ralt
 ibus-daemon -rxRd
 feh --bg-fill /home/nathan/Documents/bg.png
+signal-desktop &
 # picom seems to make highlight dragging render better
-picom  --backend glx &
+picom --backend glx &
 polybar & # this has messy padding
 dunst &
 xmousepasteblock &

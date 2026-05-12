@@ -82,9 +82,9 @@ vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
 vim.keymap.set("n", "<CA-u>", ":UndotreeToggle<CR>")
 --- NOTE: Luarocks feature
 package.path = package.path
-    .. ";"
-    .. vim.fn.expand("$HOME")
-    .. "/.luarocks/share/lua/5.1/?/init.lua;"
+	.. ";"
+	.. vim.fn.expand("$HOME")
+	.. "/.luarocks/share/lua/5.1/?/init.lua;"
 package.path = package.path .. ";" .. vim.fn.expand("$HOME") .. "/.luarocks/share/lua/5.1/?.lua;"
 --- TODO: figure out wrapping in text docs then using gj gk
 vim.opt.wrap = false
@@ -133,7 +133,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 			vim.cmd("enew")
 			vim.cmd("normal! p0%lD")
 			vim.cmd("normal! 0ireturn")
-			vim.cmd("silent! s/\\\\\"/\"/g")
+			vim.cmd('silent! s/\\\\"/"/g')
 			vim.cmd("s/,/,\\r/g")
 			vim.cmd("set ft=lua")
 			vim.cmd("%!stylua -")
@@ -147,8 +147,8 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 			local cursor = vim.api.nvim_win_get_cursor(0)
 			local start_section = cur_line:sub(1, cursor[2])
 			local word_begin = start_section:len()
-			    - (start_section:reverse():find(" ") or start_section:len() + 1)
-			    + 2
+				- (start_section:reverse():find(" ") or start_section:len() + 1)
+				+ 2
 			if word_begin == nil then return end
 			local page_container = cur_line:sub(word_begin)
 			local page_end = (page_container:find("[, ]") or page_container:len() + 1) - 1
