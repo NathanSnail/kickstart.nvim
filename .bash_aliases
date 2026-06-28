@@ -18,7 +18,6 @@ alias t='tree -L 2'
 alias wina='sudo lxc console win11 --type=vga'
 alias wins='sudo lxc start win11 --console=vga'
 alias wink='sudo lxc stop win11'
-alias cls=clear # criminal offense but idc
 alias py=python3
 alias rgf='find . | rg' $1
 alias fd='z $(find . -type d | fzf)'
@@ -52,8 +51,11 @@ alias yy='xclip -sel clip'
 alias p='xclip -o'
 alias what='echo $?'
 alias matlab='/home/nathan/MATLAB/R2024a/bin/matlab'
+cls() {
+	convert $@ -format %c -depth 8 histogram:info:-
+}
 cgr() {
-	convert $1 -format %c -depth 8 histogram:info:- | rg -i $2
+	cls $1 | rg -i $2
 }
 alias dsc='{printf "\`\`\`ansi\n$ "; command=$(fc -ln -1); echo $command | bat --language=sh -f -p --theme base16; unbuffer bash -i -c "$command"; printf "\`\`\`"}'
 alias gs='git status'
@@ -71,6 +73,7 @@ click() {
 	bspc node $OLD_FOCUS -f
 }
 alias clippy='RUSTFLAGS="-A dead_code" cargo clippy'
+alias search='nala search'
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
