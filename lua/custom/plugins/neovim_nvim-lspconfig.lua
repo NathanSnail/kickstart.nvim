@@ -92,6 +92,22 @@ return {
 		--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 		--  - settings (table): Override the default settings passed when initializing the server.
 		--		For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+		local lua_library = {
+			-- "${3rd}/luv/library",
+			"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
+			-- "~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/",
+			-- "~/Documents/code/Noita-Dear-ImGui/imguidoc/imgui_definitions.lua",
+			-- "~/.luarocks/",
+			--unpack(vim.api.nvim_get_runtime_file("", true)),
+		}
+		if
+			({
+				["/home/nathan/Documents/code/noitadata"] = true,
+				["/home/nathan/Documents/code/data_full"] = true,
+			})[vim.fn.getcwd()]
+		then
+			table.insert(lua_library, "~/Documents/code/noita_stubs")
+		end
 		local servers = {
 			zls = { settings = { enable_build_on_save = true } },
 			clangd = {},
@@ -148,14 +164,7 @@ return {
 						workspace = {
 							ignoreSubmodules = false,
 							checkThirdParty = false,
-							library = {
-								-- "${3rd}/luv/library",
-								"~/Documents/code/AutoLuaAPI/out.lua", --- NOTE: Nathan Noita API defs
-								-- "~/.local/share/Steam/steamapps/common/Primordialis Demo/data/scripts/lua_mods/",
-								-- "~/Documents/code/Noita-Dear-ImGui/imguidoc/imgui_definitions.lua",
-								-- "~/.luarocks/",
-								--unpack(vim.api.nvim_get_runtime_file("", true)),
-							},
+							library = lua_library,
 						},
 						completion = {
 							callSnippet = "Replace",
