@@ -178,6 +178,23 @@ local ret = {
 		lazy = false, -- This plugin is already lazy
 	},
 	"NathanSnail/qalc.nvim",
+	{
+		"3rd/image.nvim",
+		lazy = false,
+		config = function()
+			require("image").setup({
+				backend = "kitty",
+			})
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = "image_nvim",
+				group = vim.api.nvim_create_augroup("image_only_keymap", { clear = true }),
+				callback = function()
+					vim.keymap.set("n", "+", ":ImageBigger<CR>", { silent = true, buffer = true })
+					vim.keymap.set("n", "-", ":ImageSmaller<CR>", { silent = true, buffer = true })
+				end,
+			})
+		end,
+	},
 }
 
 for _, v in ipairs(themes) do

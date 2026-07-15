@@ -76,7 +76,7 @@ alias clippy='RUSTFLAGS="-A dead_code" cargo clippy'
 alias search='nala search'
 
 # noita stuff
-alias ghidra='~/Documents/ghidra/ghidra_11.4.1_PUBLIC/ghidraRun'
+alias ghidra='~/Documents/ghidra/ghidra_12.1.2_PUBLIC/ghidraRun'
 alias mods='cd /home/nathan/.local/share/Steam/steamapps/common/Noita/mods/'
 alias data='cd ~/Documents/code/noitadata/'
 alias noita='z /home/nathan/.local/share/Steam/steamapps/common/Noita'
