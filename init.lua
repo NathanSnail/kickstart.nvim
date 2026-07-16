@@ -80,6 +80,12 @@ vim.opt.shiftwidth = 6
 vim.keymap.set("n", "<C-t>", ":10sp +term<CR>")
 vim.keymap.set("n", "<CS-j>", "i<CR><esc>")
 vim.keymap.set("n", "<CA-u>", ":UndotreeToggle<CR>")
+vim.api.nvim_create_user_command("LuaLog", function()
+	vim.api.nvim_command(":LspLog")
+	vim.api.nvim_command(":%s/\\\\n/\\r/g")
+	vim.api.nvim_command(":%s/\\\\t/\\t/g")
+	vim.api.nvim_command(":%s/lua-language-server:/\\r/g")
+end, { bang = true })
 --- NOTE: Luarocks feature
 package.path = package.path
 	.. ";"
