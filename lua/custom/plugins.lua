@@ -78,9 +78,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 })
 
 local ret = {
-	-- "tpope/vim-sleuth", -- Detect tabstop and shiftwidth automatically
-	-- NOTE: don't use spaces ever.
-
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
 		-- used for completion, annotations and signatures of Neovim apis
