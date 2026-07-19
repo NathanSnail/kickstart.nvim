@@ -160,7 +160,10 @@ return {
 							enable = false,
 							--true -- this feature is too slow
 						},
-						runtime = { version = "LuaJIT" },
+						runtime = {
+							version = "LuaJIT",
+							special = { dofile_once = "dofile" },
+						},
 						workspace = {
 							ignoreSubmodules = false,
 							checkThirdParty = false,
