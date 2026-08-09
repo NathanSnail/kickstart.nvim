@@ -110,7 +110,12 @@ return {
 		end
 		local servers = {
 			zls = { settings = { enable_build_on_save = true } },
-			clangd = {},
+			clangd = {
+				cmd = {
+					"clangd",
+					"--query-driver=/usr/bin/gcc-15",
+				},
+			},
 			pyright = {},
 			lemminx = {
 				settings = {
