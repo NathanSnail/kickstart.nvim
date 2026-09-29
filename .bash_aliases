@@ -8,7 +8,7 @@ alias vim=nvim
 alias fv='fd && e'
 
 # general command line
-alias ga='git add .'
+alias ga='git add -A'
 function camp() {
 	ga
 	git commit -am "$1"
@@ -74,6 +74,8 @@ click() {
 }
 alias clippy='RUSTFLAGS="-A dead_code" cargo clippy'
 alias search='nala search'
+alias rm='gio trash'
+alias rm_danger=/bin/rm
 
 # noita stuff
 alias ghidra='~/Documents/ghidra/ghidra_12.1.2_PUBLIC/ghidraRun'

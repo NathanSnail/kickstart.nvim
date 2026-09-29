@@ -100,6 +100,10 @@ return {
 			-- "~/.luarocks/",
 			--unpack(vim.api.nvim_get_runtime_file("", true)),
 		}
+		if vim.fn.getcwd():gmatch("/home/nathan/Documents/code/noita_mods_wrappers/.*") then
+			vim.opt.path:append("../..")
+			vim.opt.path:append("/home/nathan/Documents/code/noitadata")
+		end
 		if
 			({
 				["/home/nathan/Documents/code/noitadata"] = true,
