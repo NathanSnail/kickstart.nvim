@@ -77,6 +77,11 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
+---@return boolean
+function LOAD_LAZY_DEV()
+	return vim.fn.getcwd():gmatch("kickstart")() ~= nil
+end
+
 local ret = {
 	{
 		-- `lazydev` configures Lua LSP for your Neovim config, runtime and plugins
@@ -88,6 +93,9 @@ local ret = {
 				{ path = "${3rd}/luv/library", words = { "This should never occur" } },
 			},
 		},
+		cond = function()
+			return LOAD_LAZY_DEV()
+		end,
 	},
 	file("lewis6991/gitsigns.nvim"),
 	file("nvim-telescope/telescope.nvim"),
